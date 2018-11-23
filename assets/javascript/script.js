@@ -9,24 +9,34 @@ $(document).ready(function () {
         storageBucket: "cheap-date-fc5c4.appspot.com",
         messagingSenderId: "196759091475"
     };
+
     firebase.initializeApp(config);
 
-    // creating a vairable to store the relevant URL for the user search
-    let queryURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=apples%2Cflour%2Csugar&limitLicense=false&number=5&ranking=1"
+    // On click function for use to submit their recipe request based on the ingredients in their fridge.
+    $(document).on("click", "#find-recipes", function (event) {
+        // prevent the page from refreshing
+        event.preventDefault();
+        // storing the user input in whatsInTheFridge variable so that it can be concatenated into the spoonacular search endpoint URL
+        let whatsInTheFridge = $("#ingredient-input").val().trim();
+        console.log(whatsInTheFridge);
 
-    $.ajax({
-        /*Need to figure out how to configure a header in ajax and where the x-mashape-key is but it should look something like this (see next comment) according to the docs here: https://market.mashape.com/spoonacular/recipe-food-nutrition#search-recipes-by-ingredients*/
+        // creating a vairable to store the relevant URL for the user search
+        let whatsInTheFridgeURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + whatsInTheFridge + "&limitLicense=false&number=5&ranking=1";
 
-        /* HttpResponse<JsonNode> response = Unirest.get("https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/search?diet=vegetarian&excludeIngredients=coconut&instructionsRequired=false&intolerances=egg%2C+gluten&limitLicense=false&number=10&offset=0&query=burger&type=main+course")
-        .header("X-Mashape-Key", "pTIzYRM18Gmshga0jX6egqHPjrYrp16Qqs8jsn2EtG8iROF0Kt")
-        .header("Accept", "application/json")
-        .asJson();*/
+        $.ajax({
+            beforeSend: function (request) {
+                request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
+            },
+            dataType: "Json",
+            method: "GET",
+            url: whatsInTheFridgeURL
 
-        url: queryURL,
-        method: "GET"
-    }).then(function (response) {
+        }).then(function (response) {
 
-        let results = response.data;
-        console.log(results);
+            let results = response.data;
+            console.log(results);
+        });
     });
+
+
 });
