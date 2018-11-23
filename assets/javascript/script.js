@@ -38,5 +38,17 @@ $(document).ready(function () {
         });
     });
 
+    // Wine search
+    $("#wineSearchForm").submit(function(event) {
+        event.preventDefault();
 
+        var searchText = $("#wineSearchInput").val();
+        var searchMinPrice = $("#minPrice").val();
+        var searchMaxPrice = $("#maxPrice").val();
+        console.log("Search Text:", searchText +
+                    ", Min:", searchMinPrice +
+                    ", Max Price:", searchMaxPrice);
+
+        // TODO: Search against Snooth API
+    });
 });
