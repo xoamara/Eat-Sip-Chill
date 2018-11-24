@@ -37,9 +37,29 @@
             </form>
     </div>
     
+    <div id="wine">
+        <form id="wineSearchForm">
+            <div class="form-group">
+                <label for="wineSearchInput">Wine Search</label>
+                <input type="text" id="wineSearchInput" class="form-control">            
+            </div>
+            <div class="form-row">  
+                <label for="priceRange">Price Range</label>   
+                <div class="col">
+                    <input type="number" id="minPrice" value="0" class="form-control">
+                </div>
+                <div class="col">
+                    <input type="number" id="maxPrice" value="15" class="form-control">
+                </div>
+            </div>
+            <button type="submit" id="wineSearchBtn" class="btn btn-primary">Search</button>
+        </form>
+    </div>    
+
 
         <script src="assets/javascript/script.js"></script>
 
         <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
             crossorigin="anonymous"></script>
 </body>
+</html>
