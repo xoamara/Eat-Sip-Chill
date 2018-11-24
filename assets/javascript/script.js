@@ -23,6 +23,11 @@ $(document).ready(function () {
         // creating a vairable to store the relevant URL for the user search
         let whatsInTheFridgeURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + whatsInTheFridge + "&limitLicense=false&number=5&ranking=1";
 
+        let whatWine = $("wineSearchInput").val().trim();
+        console.log(whatWine);
+
+        let dinnerTable = $("dinner-table");
+
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
