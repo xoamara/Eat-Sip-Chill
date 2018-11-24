@@ -25,7 +25,7 @@ $(document).ready(function () {
 
         $.ajax({
             beforeSend: function (request) {
-                request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
+                request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
             dataType: "Json",
             method: "GET",
@@ -37,37 +37,46 @@ $(document).ready(function () {
             console.log(results);
 
             for (var i = 0; i < results.length; i++) {
-
                 let recipeDiv = $("#dinner-table");
                 let recipeTitle = results[i].title;
                 let recipeID = results[i].id;
+                let SITE_BASE = "https://spoonacular.com/recipes/";
+
+                let recipeLink = $("<a>");
+                recipeLink.attr({
+                    href: SITE_BASE + recipeTitle + "-" + recipeID,
+                    target: "_blank",
+                })
+
                 let titleText = $("<h4>").text(recipeTitle);
-                let recipePrefix = "https://spoonacular.com/recipes/";
-            
+
                 let recipeImage = $("<img>");
                 recipeImage.attr({
                     class: "img-fluid img-thumbnail shadow rounded",
                     src: results[i].image,
                     value: recipeID,
                 })
-            
-                recipeDiv.prepend(titleText);
-                recipeDiv.prepend(recipeImage);
-            
+
+                recipeDiv.prepend(recipeLink)
+                recipeLink.append(titleText);
+                recipeLink.append(recipeImage);
+
+
+
             }
         });
     });
 
     // Wine search
-    $("#wineSearchForm").submit(function(event) {
+    $("#wineSearchForm").submit(function (event) {
         event.preventDefault();
 
         var searchText = $("#wineSearchInput").val();
         var searchMinPrice = $("#minPrice").val();
         var searchMaxPrice = $("#maxPrice").val();
         console.log("Search Text:", searchText +
-                    ", Min:", searchMinPrice +
-                    ", Max Price:", searchMaxPrice);
+            ", Min:", searchMinPrice +
+            ", Max Price:", searchMaxPrice);
 
         // TODO: Search against Snooth API
     });
