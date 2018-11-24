@@ -33,8 +33,28 @@ $(document).ready(function () {
 
         }).then(function (response) {
 
-            let results = response.data;
+            let results = response;
             console.log(results);
+
+            for (var i = 0; i < results.length; i++) {
+
+                let recipeDiv = $("#dinner-table");
+                let recipeTitle = results[i].title;
+                let recipeID = results[i].id;
+                let titleText = $("<h4>").text(recipeTitle);
+                let recipePrefix = "https://spoonacular.com/recipes/";
+            
+                let recipeImage = $("<img>");
+                recipeImage.attr({
+                    class: "img-fluid img-thumbnail shadow rounded",
+                    src: results[i].image,
+                    value: recipeID,
+                })
+            
+                recipeDiv.prepend(titleText);
+                recipeDiv.prepend(recipeImage);
+            
+            }
         });
     });
 
