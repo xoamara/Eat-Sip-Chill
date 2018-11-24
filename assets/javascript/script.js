@@ -39,8 +39,7 @@ $(document).ready(function () {
             dataType: "Json",
             method: "GET",
             url: whatsInTheFridgeURL,
-            url: winePairingURL
-
+            
         }).then(function (response) {
 
             let results = response;
@@ -65,6 +64,22 @@ $(document).ready(function () {
                 recipeDiv.prepend(recipeImage);
 
             }
+        });
+        
+        $.ajax({
+            beforeSend: function (request) {
+                request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
+            },
+            
+            dataType: "Json",
+            method: "GET",
+            url: winePairingURL,
+        
+        }).then(function (response) {
+
+            let results = response;
+            console.log(results);
+
         });
     });
 
