@@ -35,11 +35,11 @@ $(document).ready(function () {
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
             },
-            
+
             dataType: "Json",
             method: "GET",
-            url: whatsInTheFridgeURL,
-            
+            url: whatsInTheFridgeURL
+
         }).then(function (response) {
 
             let results = response;
@@ -65,35 +65,43 @@ $(document).ready(function () {
 
             }
         });
-        
+
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
             },
-            
+
             dataType: "Json",
             method: "GET",
-            url: winePairingURL,
-        
+            url: winePairingURL
+
         }).then(function (response) {
 
             let results = response;
             console.log(results);
 
+            for (let i = 0; i < results.length; i++) {
+
+                let pairingText = results[i].pairingText;
+                let pairedWines = results[i].pairedWines;
+                let
+
+            }
+
         });
     });
 
     // Wine search
-    $("#wineSearchForm").submit(function(event) {
+    $("#wineSearchForm").submit(function (event) {
         event.preventDefault();
 
-    // let searchText = $("#wineSearchInput").val();
-    // var searchMinPrice = $("#minPrice").val();
-    // var searchMaxPrice = $("#maxPrice").val();
-    // console.log("Search Text:", searchText +
-    //             ", Min:", searchMinPrice +
-    //             ", Max Price:", searchMaxPrice);
+        // let searchText = $("#wineSearchInput").val();
+        // var searchMinPrice = $("#minPrice").val();
+        // var searchMaxPrice = $("#maxPrice").val();
+        // console.log("Search Text:", searchText +
+        //             ", Min:", searchMinPrice +
+        //             ", Max Price:", searchMaxPrice);
 
-    // TODO: Search against Snooth API
-});
+        // TODO: Search against Snooth API
+    });
 });
