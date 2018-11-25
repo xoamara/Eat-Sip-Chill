@@ -35,12 +35,18 @@ $(document).ready(function () {
 
             let results = response;
             console.log(results);
+            let SITE_BASE = "https://spoonacular.com/recipes/";
 
-            for (var i = 0; i < results.length; i++) {
-                let recipeDiv = $("#dinner-table");
+            // Clear previous search results
+            let recipeDiv = $("#dinner-table");
+            recipeDiv.empty();
+
+            // Clear value of search input
+            $("#ingredient-input").val("");
+            
+            for (var i = 0; i < results.length; i++) {                
                 let recipeTitle = results[i].title;
                 let recipeID = results[i].id;
-                let SITE_BASE = "https://spoonacular.com/recipes/";
 
                 let recipeLink = $("<a>");
                 recipeLink.attr({
@@ -57,12 +63,9 @@ $(document).ready(function () {
                     value: recipeID,
                 })
 
-                recipeDiv.prepend(recipeLink)
+                recipeDiv.append(recipeLink)
                 recipeLink.append(titleText);
                 recipeLink.append(recipeImage);
-
-
-
             }
         });
     });
