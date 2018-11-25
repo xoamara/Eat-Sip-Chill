@@ -30,7 +30,7 @@ $(document).ready(function () {
 
         $.ajax({
             beforeSend: function (request) {
-                request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
+                request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
             dataType: "Json",
             method: "GET",
@@ -40,31 +40,43 @@ $(document).ready(function () {
 
             let results = response;
             console.log(results);
+            let SITE_BASE = "https://spoonacular.com/recipes/";
 
-            for (var i = 0; i < results.length; i++) {
+            // Clear previous search results
+            let recipeDiv = $("#dinner-table");
+            recipeDiv.empty();
 
-                let recipeDiv = $("#dinner-table");
+            // Clear value of search input
+            $("#ingredient-input").val("");
+            
+            for (var i = 0; i < results.length; i++) {                
                 let recipeTitle = results[i].title;
                 let recipeID = results[i].id;
+
+                let recipeLink = $("<a>");
+                recipeLink.attr({
+                    href: SITE_BASE + recipeTitle + "-" + recipeID,
+                    target: "_blank",
+                })
+
                 let titleText = $("<h4>").text(recipeTitle);
-                let recipePrefix = "https://spoonacular.com/recipes/";
-            
+
                 let recipeImage = $("<img>");
                 recipeImage.attr({
                     class: "img-fluid img-thumbnail shadow rounded",
                     src: results[i].image,
                     value: recipeID,
                 })
-            
-                recipeDiv.prepend(titleText);
-                recipeDiv.prepend(recipeImage);
-            
+
+                recipeDiv.append(recipeLink)
+                recipeLink.append(titleText);
+                recipeLink.append(recipeImage);
             }
         });
 
         $.ajax({
             beforeSend: function (request) {
-                    request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
+                    request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
     
             dataType: "Json",
@@ -98,5 +110,3 @@ $(document).ready(function () {
     //     console.log("Search Text:", searchText +
     //                 ", Min:", searchMinPrice +
     //                 ", Max Price:", searchMaxPrice);
-
-    //     // TODO: Search against Snooth API
