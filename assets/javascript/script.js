@@ -20,22 +20,18 @@ $(document).ready(function () {
         let whatsInTheFridge = $("#ingredient-input").val().trim();
         console.log(whatsInTheFridge);
 
-        // let whatWine = $("wineSearchInput").val().trim();
-        // console.log(whatWine);
-
-        // creating a vairable to store the relevant URL for the user "#ingredient-input" to return recipes
+        // creating a vairable to store the relevant URL for the user search
         let whatsInTheFridgeURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + whatsInTheFridge + "&limitLicense=false&number=5&ranking=1";
 
         // creating a vairable to store the relevant URL to return wine recommendation based on "#ingredient-input"  
         let winePairingURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + whatsInTheFridge + "&maxPrice=15";
-
+        
         let dinnerTable = $("dinner-table");
 
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
             },
-
             dataType: "Json",
             method: "GET",
             url: whatsInTheFridgeURL
@@ -52,56 +48,55 @@ $(document).ready(function () {
                 let recipeID = results[i].id;
                 let titleText = $("<h4>").text(recipeTitle);
                 let recipePrefix = "https://spoonacular.com/recipes/";
-
+            
                 let recipeImage = $("<img>");
                 recipeImage.attr({
                     class: "img-fluid img-thumbnail shadow rounded",
                     src: results[i].image,
                     value: recipeID,
                 })
-
+            
                 recipeDiv.prepend(titleText);
                 recipeDiv.prepend(recipeImage);
-
+            
             }
         });
 
         $.ajax({
             beforeSend: function (request) {
-                request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
+                    request.setRequestHeader("X-Mashape-Key", "7GGhuyabBLmsh1ZtFyQTxuQTZTV2p1PiOUYjsnMu93Ly1yeUOW");
             },
-
+    
             dataType: "Json",
             method: "GET",
             url: winePairingURL
-
-        }).then(function (response) {
-
+    
+    }).then(function (response) {
+    
             let results = response;
             console.log(results);
-
+    
             for (let i = 0; i < results.length; i++) {
-
-                let pairingText = results[i].pairingText;
-                let pairedWines = results[i].pairedWines;
-                let
-
-            }
-
+    
+                    let pairingText = results[i].pairingText;
+                    let pairedWines = results[i].pairedWines;
+                    let
+    
+            };
+    
         });
     });
+});
 
     // Wine search
-    $("#wineSearchForm").submit(function (event) {
-        event.preventDefault();
+    // $("#wineSearchForm").submit(function(event) {
+    //     event.preventDefault();
 
-        // let searchText = $("#wineSearchInput").val();
-        // var searchMinPrice = $("#minPrice").val();
-        // var searchMaxPrice = $("#maxPrice").val();
-        // console.log("Search Text:", searchText +
-        //             ", Min:", searchMinPrice +
-        //             ", Max Price:", searchMaxPrice);
+    //     var searchText = $("#wineSearchInput").val();
+    //     var searchMinPrice = $("#minPrice").val();
+    //     var searchMaxPrice = $("#maxPrice").val();
+    //     console.log("Search Text:", searchText +
+    //                 ", Min:", searchMinPrice +
+    //                 ", Max Price:", searchMaxPrice);
 
-        // TODO: Search against Snooth API
-    });
-});
+    //     // TODO: Search against Snooth API
