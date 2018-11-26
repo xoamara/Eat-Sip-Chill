@@ -160,6 +160,9 @@ $(document).ready(function () {
             let results = response;
             console.log(results);
 
+            let winePairing = $("<div>").text(results.pairingText);
+            $("#wine-pairing").append(winePairing);
+
         });
 
         // find the value attribute of $(this) recipeImage and hold it in the uniqueRecipeId variable so that it can be dynamically inserted into the queryURL of the  unique recipe information api call.  
