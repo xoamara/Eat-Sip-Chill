@@ -73,6 +73,15 @@ $(document).ready(function () {
                 recipeLink.append(recipeImage);
             }
         });
+    });
+
+        // on click event
+        $(document).on("click",".shadow", function (event) {
+            console.log(this);
+        // ajax call for unique recipe info
+        // ajax call for wine pairing info
+        // and then display them on the page
+        let uniqueRecipe = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/{id}/information";
 
         $.ajax({
             beforeSend: function (request) {
@@ -98,7 +107,6 @@ $(document).ready(function () {
     
         });
     });
-});
 
     // Wine search
     // $("#wineSearchForm").submit(function(event) {
