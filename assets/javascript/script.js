@@ -12,6 +12,60 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
+    //MovieDB API Ajax calls
+
+    let api_key = "81e30798ba964b88d42fd6064efd7734"
+    
+    //Ajax call for movies based on Popularity
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+    //Ajax call for Movies based on highest Ratings
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&language=en-US&certification_country=US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+    //Ajax call for Movies based on highest Ratings for category "Drama"
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=18&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+    //Ajax call for Movies based on highest Ratings for category "Action"
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=28&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+    //Ajax call for Movies based on highest Ratings for category "Comedy"
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=35&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+    //Ajax call for Movies based on highest Ratings for category "Romance"
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=10749&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+    //Ajax call for Movies based on highest Ratings for category "Science Fiction"
+    $.ajax({
+        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=878&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
+    }).then(function(response){
+        console.log(response);
+    })
+
+
     // On click function for use to submit their recipe request based on the ingredients in their fridge.
     $(document).on("click", "#find-recipes", function (event) {
         // prevent the page from refreshing
