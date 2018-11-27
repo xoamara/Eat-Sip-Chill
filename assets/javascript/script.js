@@ -138,10 +138,12 @@ $(document).ready(function () {
 
         // resetting the values so that it only shows for most recently clicked recipe 
         $("#wine-pairing").val("");
-        $("instructions").val("");
+        $("#instructions").val("");
 
         // prevent the page from refreshing
         event.preventDefault();
+
+
 
         // find the value attribute of $(this) recipeImage and hold it in the uniqueRecipeId variable so that it can be dynamically inserted into the queryURL of the  unique recipe information api call.  
         let uniqueRecipeId = $(this).attr("value");
@@ -158,7 +160,7 @@ $(document).ready(function () {
             dataType: "Json",
             method: "GET",
             url: uniqueRecipeURL
-
+            
             // Once the promise is returned run the code below
         }).then(function (response) {
 
@@ -209,51 +211,51 @@ $(document).ready(function () {
 
             // creating divs to hold the specific wine data suggested from spoonacular
             let pairingNotes = $("<p>").html(results.pairingText);
-            
+
             // create a html element to hold the name of a specifically suggested wine
             let specificWineSuggestion = $("<p>").html(results.productMatches[0].title);
 
             // create a html element to hold that specific wine's description
             let specificWineDescription = $("<p>").html(results.productMatches[0].description);
 
+            let noWine = $("<p>").html(results.status.message);
+            console.log(noWine);
+            console.log(results.message);
+            console.log(results.status);
+
             // appending those results to the div with id="wine-pairing"
             $("#wine-pairing").append(pairingNotes);
             $("#wine-pairing").append(specificWineSuggestion);
             $("#wine-pairing").append(specificWineDescription);
+            $("#wine-pairing").append(noWine);
 
-            // dynamically creating a back button so that the user can get back to the recipes once they are reading instructions
-            let backButton = $("<button>").attr("id", "back-button").addClass("button").text("BACK-BUTTON");
+        });
 
-            // appending the recipeInstructions <div> to the <div> with id = "instrucitons"
-            $("#button2").html(backButton);
+        // dynamically creating a back button so that the user can get back to the recipes once they are reading instructions
+        let backButton = $("<button>").attr("id", "back-button").addClass("button").text("BACK-BUTTON");
 
-            // This on click event listener takes the user back to the recipes page after they are done looking at the cooking instructions 
-            $(document).on("click", "#back-button", function (event) {
+        // appending the recipeInstructions <div> to the <div> with id = "instrucitons"
+        $("#button2").html(backButton);
 
-                // prevent the page from refreshing
-                event.preventDefault();
-                // checking to see if the click event is getting registered
-                console.log("button click")
+        // This on click event listener takes the user back to the recipes page after they are done looking at the cooking instructions 
+        $(document).on("click", "#back-button", function (event) {
 
-                // hides the recipe instructions
-                $("#instructions").hide();
+            // prevent the page from refreshing
+            event.preventDefault();
 
-                // Hide the back-button
-                $("#back-button").hide();
+            console.log("button click")
 
-                // hide the winepairing div
-                $("wine-pairing").hide();
+            // Hide the back-button
+            $("#back-button").hide();
 
-                // Erasing the text inside the wine-pairing div
-                $("#wine-pairing").text("");
-                
-                // Erasing the text inside the instructions div
-                $("instructions").text("");
+            // Erasing the text inside the wine-pairing div
+            $("#wine-pairing").text("");
 
-                // show the div with id = "food" 
-                $("#food").show();
+            // Erasing the text inside the instructions div
+            $("#instructions").text("");
 
-            });
+            // show the div with id = "food" 
+            $("#food").show();
 
         });
 
