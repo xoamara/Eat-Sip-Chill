@@ -215,10 +215,12 @@ $(document).ready(function () {
     $("#movieGenres").change(function(){
         let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
 
+        // The "value" attribute of the selected option is the genre id that
+        // will be used in the ajax call
         let movieGenre = $("#movieGenres").val();
         console.log(movieGenre);
 
-          //Ajax call for Movies based on highest Ratings for category "Romance"
+        //Ajax call for Movies based on popularity for selected genre
         $.ajax({
             url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=" + movieGenre + "&language=en-US&certification_country=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"
         }).then(function (response) {
@@ -240,6 +242,7 @@ $(document).ready(function () {
                 let movieDiv = $("<div>");
                 
                 movieDiv.attr({
+                    // Set a class on the div that can be used to hook up events
                     class: "movie-item",
                     "data-movie-id": movie.id
                 });
@@ -251,12 +254,17 @@ $(document).ready(function () {
                 
                 let movieImg = $("<img>");
                 movieImg.attr({
+                    // Can't use shadow class here because it is used elsewhere for an event
                     class: "img-fluid img-thumbnail rounded",
                     src: IMAGE_BASE_URL + movie.poster_path,
                     value: movie.id,
                 });
-                
+                                
                 movieDiv.append(movieImg);
+
+                let overviewDiv = $("<div>");
+                overviewDiv.text(movie.overview);
+                movieDiv.append(overviewDiv);
 
                 movieResultsTable.append(movieDiv);
             }
@@ -264,8 +272,11 @@ $(document).ready(function () {
 
         // When you click on a movie (".movie-item")
         $(document).on("click", ".movie-item", function() {
-            console.log("Movie id: " + $(this).attr("data-movie-id"));
+            let movieId = $(this).attr("data-movie-id");
+            console.log("Movie id: " + movieId);
 
+            let movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + api_key;
+            console.log(movieUrl);
             // FIXME: Do something more interesting
         })
     });
