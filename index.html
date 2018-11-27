@@ -23,45 +23,25 @@
 </head>
 
 <body>
-    <div class="container">
-        <div class="row">
-            <div class="col-12 text-center">
-                <form id="recipe-request">
-                    <label for="ingredient-input"> What's in the fridge? </label>
-                    <input type="text" id="ingredient-input">
-                    <br>
-                    <!-- Button submits recipe request -->
-                    <input id="find-recipes" type="submit" value="Find my recipes">
-                </form>
-            </div>
-        </div>
-
-        <div class="row">
-            <div id="food" class="col-4 text-center">
-                <h3>Food Recipe</h3>
-                <div id="dinner-table"></div>
-                
-            </div>
+    <div id="food">
         
-            <div id="wine-pairing" class="col-4 text-center">
-                <h3>Wine-Pairing</h3>    
-            </div>
+        <div id="dinner-table"></div>
         
-            <div id="movieDisplay" class="col-4 text-center">
-                <h3>Suggested Movies</h3>                
-            </div>
-        </div>>
-
-        <div class="row">
-            <div id="instructions" class="col-12"></div>
-        </div>
-
-        
+        <form id="recipe-request">
+            <label for="ingredient-input"> What's in the fridge? </label>
+            <input type="text" id="ingredient-input">
+            <br>
+            <!-- Button submits recipe request -->
+            <input id="find-recipes" type="submit" value="Find my recipes">
+        </form>
 
     </div>
 
+    <div id="instructions"></div>
 
+    <div id="wine-pairing"></div>
 
+    <div id="button2"></div>
 
     <script src="assets/javascript/script.js"></script>
 
