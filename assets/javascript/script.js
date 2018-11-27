@@ -15,56 +15,6 @@ $(document).ready(function () {
     //MovieDB API Ajax calls
     let api_key = "81e30798ba964b88d42fd6064efd7734"
 
-    //Ajax call for movies based on Popularity
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&language=en-US&sort_by=popularity.desc&include_adult=false&include_video=false&page1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-    //Ajax call for Movies based on highest Ratings
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&language=en-US&certification_country=US&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-    //Ajax call for Movies based on highest Ratings for category "Drama"
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=18&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-    //Ajax call for Movies based on highest Ratings for category "Action"
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=28&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-    //Ajax call for Movies based on highest Ratings for category "Comedy"
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=35&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-    //Ajax call for Movies based on highest Ratings for category "Romance"
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=10749&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-    //Ajax call for Movies based on highest Ratings for category "Science Fiction"
-    $.ajax({
-        url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=878&language=en-US&certification_country=US&certification=R&sort_by=vote_average.desc&include_adult=false&include_video=false&page=1"
-    }).then(function (response) {
-        console.log(response);
-    })
-
-
     // On click function for use to submit their recipe request based on the ingredients in their fridge.
     $(document).on("click", "#find-recipes", function (event) {
 
@@ -261,4 +211,65 @@ $(document).ready(function () {
 
     });
 
+
+    $("#movieGenres").change(function(){
+        let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
+
+        let movieGenre = $("#movieGenres").val();
+        console.log(movieGenre);
+
+          //Ajax call for Movies based on highest Ratings for category "Romance"
+        $.ajax({
+            url: "https://api.themoviedb.org/3/discover/movie?api_key=" + api_key + "&with_genres=" + movieGenre + "&language=en-US&certification_country=US&sort_by=popularity.desc&include_adult=false&include_video=false&page=1"
+        }).then(function (response) {
+            console.log(response);
+
+            // Storing an array of results in the results variable
+            let movieResults = response.results;
+
+            let movieResultsTable = $("#movieTable");
+            movieResultsTable.empty();
+
+            // Looping over every result item
+            for (var i = 0; i < movieResults.length; i++) {
+
+                let movie = movieResults[i];
+
+                console.log(movie.title);
+
+                let movieDiv = $("<div>");
+                
+                movieDiv.attr({
+                    class: "movie-item",
+                    "data-movie-id": movie.id
+                });
+
+                let movieTitle = $("<h4>");
+                movieTitle.text(movie.title);
+
+                movieDiv.append(movieTitle);
+                
+                let movieImg = $("<img>");
+                movieImg.attr({
+                    class: "img-fluid img-thumbnail rounded",
+                    src: IMAGE_BASE_URL + movie.poster_path,
+                    value: movie.id,
+                });
+                
+                movieDiv.append(movieImg);
+
+                movieResultsTable.append(movieDiv);
+            }
+        });
+
+        // When you click on a movie (".movie-item")
+        $(document).on("click", ".movie-item", function() {
+            console.log("Movie id: " + $(this).attr("data-movie-id"));
+
+            // FIXME: Do something more interesting
+        })
+    });
+
 });
+
+
