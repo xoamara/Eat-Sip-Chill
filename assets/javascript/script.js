@@ -12,6 +12,8 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
+  let database = firebase.database();
+
     //MovieDB API Ajax calls
     let api_key = "81e30798ba964b88d42fd6064efd7734"
 
@@ -75,8 +77,13 @@ $(document).ready(function () {
         let whatsInTheFridge = $("#ingredient-input").val().trim();
         console.log(whatsInTheFridge);
 
-        // FIXME:push whatsInTheFridge to firebase so that it is always available as a variable for the URL's
-        // database.ref().push()
+        // pushes/saves user input data (ingredients entered) to Firebase
+        database.ref().push ({
+            whatsInTheFridge: whatsInTheFridge
+        });
+
+        //On button click, clears/resets user input form
+        $("#ingredient-input").trigger("reset");
 
         // creating a vairable to store the relevant URL for the user search
         let whatsInTheFridgeURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/recipes/findByIngredients?fillIngredients=false&ingredients=" + whatsInTheFridge + "&limitLicense=false&number=5&ranking=1";
@@ -131,6 +138,18 @@ $(document).ready(function () {
                 recipeLink.append(recipeImage);
             }
         });
+    });
+
+    //firebase event listener for child added
+    database.ref().on("child_added", function(childSnapshot){
+
+        // variable set up to access data from firebase
+        let newWhatsInTheFridge = childSnapshot.val().whatsInTheFridge;
+        console.log(newWhatsInTheFridge);
+
+        // variable to reference firebase key (id) for each data entry
+        let key = childSnapshot.key
+        console.log(key);
     });
 
     // When the user clicks on a specific recipe (."shadow"), run the code below
