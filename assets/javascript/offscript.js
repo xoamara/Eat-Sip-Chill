@@ -152,9 +152,12 @@ $(document).ready(function () {
 
                         // This on click event listener takes the user back to the recipes page after they are done looking at the cooking instructions 
                         $(document).on("click", "#back-button", function (event) {
+                                
                                 console.log("button click")
+                                
                                 // hides the recipe instructions
                                 $("#instructions").hide();
+                                
                                 // show the div with id = "food" 
                                 $("#food").show();
 
