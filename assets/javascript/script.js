@@ -168,16 +168,16 @@ $(document).ready(function () {
             // create a html element to hold that specific wine's description
             let specificWineDescription = $("<p>").html(results.productMatches[0].description);
 
-            let noWine = $("<p>").html(results.status.message);
-            console.log(noWine);
-            console.log(results.message);
-            console.log(results.status);
+            // let noWine = $("<p>").html(results.status.message);
+            // console.log(noWine);
+            // console.log(results.message);
+            // console.log(results.status);
 
             // appending those results to the div with id="wine-pairing"
             $("#wine-pairing").append(pairingNotes);
             $("#wine-pairing").append(specificWineSuggestion);
             $("#wine-pairing").append(specificWineDescription);
-            $("#wine-pairing").append(noWine);
+            // $("#wine-pairing").append(noWine);
 
         });
 
@@ -244,42 +244,53 @@ $(document).ready(function () {
                 movieDiv.attr({
                     // Set a class on the div that can be used to hook up events
                     class: "movie-item",
-                    "data-movie-id": movie.id
+                    "data-movie-id": movie.id,
+                    "data-movie-release-date": movie.release_date
                 });
 
                 let movieTitle = $("<h4>");
                 movieTitle.text(movie.title);
 
                 movieDiv.append(movieTitle);
+
+               
                 
                 let movieImg = $("<img>");
                 movieImg.attr({
                     // Can't use shadow class here because it is used elsewhere for an event
                     class: "img-fluid img-thumbnail rounded",
                     src: IMAGE_BASE_URL + movie.poster_path,
-                    value: movie.id,
+                    value: movie.id
                 });
-                                
+
+                                               
                 movieDiv.append(movieImg);
 
                 let overviewDiv = $("<div>");
+                overviewDiv.attr("class", "movie-overview")
                 overviewDiv.text(movie.overview);
+                overviewDiv.hide();
                 movieDiv.append(overviewDiv);
 
                 movieResultsTable.append(movieDiv);
+
+              
             }
         });
 
         // When you click on a movie (".movie-item")
         $(document).on("click", ".movie-item", function() {
             let movieId = $(this).attr("data-movie-id");
+            let movieReleaseDate = $(this).attr("data-movie-release-date");
             console.log("Movie id: " + movieId);
-
+            console.log("Movie Release date: " + movieReleaseDate);
+            $(this).children(".movie-overview").toggle();
             let movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + api_key;
             console.log(movieUrl);
             // FIXME: Do something more interesting
         })
     });
+
 });
 
 
