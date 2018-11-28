@@ -1,0 +1,29 @@
+/* /body { */
+    /* padding: 2rem 2rem; */
+    /* margin-bottom: 0px; */
+    /* background-image: url("../images/food2.jpeg"); */
+    /* background-position: 0% 10%; */
+    /* background-size: cover; */
+    /* background-repeat: no-repeat;   */ 
+    /* text-shadow: rgb(146, 145, 145) 0.3em 0.3em 0.3em; */
+  /* } */
+
+ 
+  form {
+      text-align: center;
+  }
+
+  #dinner-table {
+      text-align: center;
+  }
+/*
+  #food  {
+    width: 400px;
+    text-align: center;
+    background-color: beige;
+   
+  }
+  */
+
+
+ 
