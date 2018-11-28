@@ -186,34 +186,29 @@ $(document).ready(function () {
 
             }
 
+            let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
+
             if (results.status === "failure") {
-                console.log("Sorry dude, no go");
+                //Message goes to div when there is a status failure on the object return
+                let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
 
-                let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
-                console.log(randomFlavor);
+                $("#wine-pairing").append(failureMessage);
 
-                let errorImage = $("<img>");
-                errorImage.attr("img-fluid img-thumbnail rounded");
-
-                let errorDescription = $("<p>").html(errorArray.title);
-                let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
-
-
-
-            } else if (results.pairedWines == 0 || null) {
-                console.log("Nah, didn't work either");
-
-                let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
-                console.log(randomFlavor);
-
+                //TODO Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
+                
                 let errorImage = $("<img>");
                 errorImage.attr({
                     class: "img-fluid img-thumbnail rounded",
-                    src: "/../images/error-images/image"+randomFlavor+".jpg",
+                    // src: "/../images/error-images/image"+randomFlavor+".jpg",
                 })
 
                 let errorDescription = $("<p>").html(errorArray.title);
                 let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
+
+            } else if (results.pairedWines == null || results.pairedWines.length === 0) {
+                let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
+
+                $("#wine-pairing").append(failureMessage);
 
             }
 
