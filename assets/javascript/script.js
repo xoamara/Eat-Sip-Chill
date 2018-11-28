@@ -280,7 +280,6 @@ $(document).ready(function () {
             // FIXME: Do something more interesting
         })
     });
-
 });
 
 
