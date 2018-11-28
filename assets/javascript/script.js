@@ -200,6 +200,7 @@ $(document).ready(function () {
             let results = response;
             console.log(results);
 
+<<<<<<< HEAD
             if (results.status === "failure") {
                 console.log("Dude Just go pick up 2 forties of Mad Dog 2020");
 
@@ -209,6 +210,41 @@ $(document).ready(function () {
                 console.log("fancy wine");
             };
 
+=======
+            //If AJAX call returns failure or empty array or 0 array data do this
+
+            let errorArray = {
+                title: "Mad Dog 20/20",
+                flavors: ["Banana Red", "Dragon Fruit", "Electric Melon", "Red Grape Wine", "Habanero Lime Arita", "Orange Jubilee", "Peaches & Cream", "Strawberry Kiwi"]
+
+            }
+
+            let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
+
+            if (results.status === "failure") {
+                //Message goes to div when there is a status failure on the object return
+                let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
+
+                $("#wine-pairing").append(failureMessage);
+
+                //TODO Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
+                
+                let errorImage = $("<img>");
+                errorImage.attr({
+                    class: "img-fluid img-thumbnail rounded",
+                    // src: "/../images/error-images/image"+randomFlavor+".jpg",
+                })
+
+                let errorDescription = $("<p>").html(errorArray.title);
+                let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
+
+            } else if (results.pairedWines == null || results.pairedWines.length === 0) {
+                let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
+
+                $("#wine-pairing").append(failureMessage);
+
+            }
+>>>>>>> 820dfb5ee425f0885fffcafc26e037c5c14fd2a6
 
             // creating divs to hold the specific wine data suggested from spoonacular
             let pairingNotes = $("<p>").html(results.pairingText);
@@ -218,11 +254,6 @@ $(document).ready(function () {
 
             // create a html element to hold that specific wine's description
             let specificWineDescription = $("<p>").html(results.productMatches[0].description);
-
-            // let noWine = $("<p>").html(results.status.message);
-            // console.log(noWine);
-            // console.log(results.message);
-            // console.log(results.status);
 
             // appending those results to the div with id="wine-pairing"
             $("#wine-pairing").append(pairingNotes);
