@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
-  let database = firebase.database();
+    let database = firebase.database();
 
     //MovieDB API Ajax calls
     let api_key = "81e30798ba964b88d42fd6064efd7734"
@@ -23,14 +23,26 @@ $(document).ready(function () {
         // prevent the page from refreshing
         event.preventDefault();
 
+        // Hide the back-button
+        $("#back-button").hide();
+
+        // Erasing the text inside the wine-pairing div
+        $("#wine-pairing").text("");
+
+        // Erasing the text inside the instructions div
+        $("#instructions").text("");
+
+        // show the div with id = "food" 
+        $("#food").show();
+
         // storing the user input in whatsInTheFridge variable so that it can be concatenated into the spoonacular search endpoint URL
         let whatsInTheFridge = $("#ingredient-input").val().trim();
         console.log(whatsInTheFridge);
 
         // pushes/saves user input data (ingredients entered) to Firebase
-        database.ref().push ({
+        database.ref().push({
             whatsInTheFridge: whatsInTheFridge
-        }); 
+        });
 
         //On button click, clears/resets user input form
         $("#ingredient-input").trigger("reset");
@@ -91,7 +103,7 @@ $(document).ready(function () {
     });
 
     //firebase event listener for child added
-    database.ref().on("child_added", function(childSnapshot){
+    database.ref().on("child_added", function (childSnapshot) {
 
         // variable set up to access data from firebase
         let newWhatsInTheFridge = childSnapshot.val().whatsInTheFridge;
@@ -129,13 +141,18 @@ $(document).ready(function () {
             dataType: "Json",
             method: "GET",
             url: uniqueRecipeURL
-            
+
             // Once the promise is returned run the code below
         }).then(function (response) {
 
             // variable holding the ajax data object for the cooking instructions
             let results = response;
             console.log(results);
+
+            // Adding a conditional statement to let the user know if the recipe they selected lacks instructions the user is notified
+            if (results.instructions == null || results.instructions.length === 0) {
+                console.log("Sorry, there are no instructions for this recipe.")
+            }
 
             // hide the <div> with id = "food"
             $("#food").hide()
@@ -152,8 +169,13 @@ $(document).ready(function () {
         let whatsInTheFridge = $("#ingredient-input").val().trim();
         console.log(whatsInTheFridge);
 
-        // TODO: still working on returning wine pairing information but there is an object in the console
-        let winePairingURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + whatsInTheFridge + "&maxPrice=15";
+        // Since the wine pairing really only wants one word this line of code takes the first word from whatsInTheFridge and stores it in a variable to be used for the wine pairing ajax call.  I actually do not know exactly how this is working and could use some explanation of the .replace method.
+        // https://stackoverflow.com/questions/18558417/get-first-word-of-string
+        let firstIngredient = whatsInTheFridge.replace(/,.*/, '');
+        console.log(firstIngredient);
+
+        // set the wine pairing API URL to the winePairingURL variable and use the first ingredient from whatsInTheFridge for the food input of the winePairingURL so that the user is more likely to get a pairing suggestion than if we use the entire string
+        let winePairingURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + firstIngredient + "&maxPrice=15";
 
         // Clear value of search input 
         // FIXME: Nate moved this so that he could use the whatsInTheFridge variable again for the second on click event so that he could get the wine pairing returned based on the user food input 
@@ -177,6 +199,16 @@ $(document).ready(function () {
             // variable holding the ajax data object for the wine pairing
             let results = response;
             console.log(results);
+
+            if (results.status === "failure") {
+                console.log("Dude Just go pick up 2 forties of Mad Dog 2020");
+
+            } else if (results.pairedWines == null || results.pairedWines.length === 0) {
+                console.log("The wine store is apparently empty.");
+            } else {
+                console.log("fancy wine");
+            };
+
 
             // creating divs to hold the specific wine data suggested from spoonacular
             let pairingNotes = $("<p>").html(results.pairingText);
@@ -231,7 +263,7 @@ $(document).ready(function () {
     });
 
 
-    $("#movieGenres").change(function(){
+    $("#movieGenres").change(function () {
         let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
 
         // The "value" attribute of the selected option is the genre id that
@@ -259,7 +291,7 @@ $(document).ready(function () {
                 console.log(movie.title);
 
                 let movieDiv = $("<div>");
-                
+
                 movieDiv.attr({
                     // Set a class on the div that can be used to hook up events
                     class: "movie-item",
@@ -272,8 +304,8 @@ $(document).ready(function () {
 
                 movieDiv.append(movieTitle);
 
-               
-                
+
+
                 let movieImg = $("<img>");
                 movieImg.attr({
                     // Can't use shadow class here because it is used elsewhere for an event
@@ -282,7 +314,7 @@ $(document).ready(function () {
                     value: movie.id
                 });
 
-                                               
+
                 movieDiv.append(movieImg);
 
                 let overviewDiv = $("<div>");
@@ -293,12 +325,12 @@ $(document).ready(function () {
 
                 movieResultsTable.append(movieDiv);
 
-              
+
             }
         });
 
         // When you click on a movie (".movie-item")
-        $(document).on("click", ".movie-item", function() {
+        $(document).on("click", ".movie-item", function () {
             let movieId = $(this).attr("data-movie-id");
             let movieReleaseDate = $(this).attr("data-movie-release-date");
             console.log("Movie id: " + movieId);
