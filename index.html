@@ -22,10 +22,17 @@
 </head>
 
 <body>
+
+    <div class="container"> 
+        <div class="jumbotron" style="background-color: rgb(252, 191, 151) ; color: white;">
+            <h1 class="text-center">
+                <strong>
+                        <i class="fas fa-utensils"></i> Cheap <i class="fas fa-film"></i> Date <i class="fas fa-wine-bottle"></i></strong>
+            </h1>
+        </div>
+    </div> 
+
     <div id="food">
-        
-        <div id="dinner-table"></div>
-        
         <form id="recipe-request">
             <label for="ingredient-input" id="fridgeQuestion"> What's in the fridge? <i class="fas fa-apple-alt"></i></label>
             <input type="text" id="ingredient-input">
@@ -33,6 +40,8 @@
             <!-- Button submits recipe request -->
             <input id="find-recipes" type="submit" value="Find my recipes">
         </form>
+         <div id="dinner-table">              
+         </div>        
     </div>
 
     <div id="instructions"></div>
