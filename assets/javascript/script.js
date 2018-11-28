@@ -12,7 +12,7 @@ $(document).ready(function () {
 
     firebase.initializeApp(config);
 
-  let database = firebase.database();
+    let database = firebase.database();
 
     //MovieDB API Ajax calls
     let api_key = "81e30798ba964b88d42fd6064efd7734"
@@ -28,9 +28,9 @@ $(document).ready(function () {
         console.log(whatsInTheFridge);
 
         // pushes/saves user input data (ingredients entered) to Firebase
-        database.ref().push ({
+        database.ref().push({
             whatsInTheFridge: whatsInTheFridge
-        }); 
+        });
 
         //On button click, clears/resets user input form
         $("#ingredient-input").trigger("reset");
@@ -91,7 +91,7 @@ $(document).ready(function () {
     });
 
     //firebase event listener for child added
-    database.ref().on("child_added", function(childSnapshot){
+    database.ref().on("child_added", function (childSnapshot) {
 
         // variable set up to access data from firebase
         let newWhatsInTheFridge = childSnapshot.val().whatsInTheFridge;
@@ -129,7 +129,7 @@ $(document).ready(function () {
             dataType: "Json",
             method: "GET",
             url: uniqueRecipeURL
-            
+
             // Once the promise is returned run the code below
         }).then(function (response) {
 
@@ -178,6 +178,45 @@ $(document).ready(function () {
             let results = response;
             console.log(results);
 
+            //If AJAX call returns failure or empty array or 0 array data do this
+
+            let errorArray = {
+                title: "Mad Dog 20/20",
+                flavors: ["Banana Red", "Dragon Fruit", "Electric Melon", "Red Grape Wine", "Habanero Lime Arita", "Orange Jubilee", "Peaches & Cream", "Strawberry Kiwi"]
+
+            }
+
+            if (results.status === "failure") {
+                console.log("Sorry dude, no go");
+
+                let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
+                console.log(randomFlavor);
+
+                let errorImage = $("<img>");
+                errorImage.attr("img-fluid img-thumbnail rounded");
+
+                let errorDescription = $("<p>").html(errorArray.title);
+                let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
+
+
+
+            } else if (results.pairedWines == 0 || null) {
+                console.log("Nah, didn't work either");
+
+                let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
+                console.log(randomFlavor);
+
+                let errorImage = $("<img>");
+                errorImage.attr({
+                    class: "img-fluid img-thumbnail rounded",
+                    src: "/../images/error-images/image"+randomFlavor+".jpg",
+                })
+
+                let errorDescription = $("<p>").html(errorArray.title);
+                let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
+
+            }
+
             // creating divs to hold the specific wine data suggested from spoonacular
             let pairingNotes = $("<p>").html(results.pairingText);
 
@@ -186,11 +225,6 @@ $(document).ready(function () {
 
             // create a html element to hold that specific wine's description
             let specificWineDescription = $("<p>").html(results.productMatches[0].description);
-
-            // let noWine = $("<p>").html(results.status.message);
-            // console.log(noWine);
-            // console.log(results.message);
-            // console.log(results.status);
 
             // appending those results to the div with id="wine-pairing"
             $("#wine-pairing").append(pairingNotes);
@@ -231,7 +265,7 @@ $(document).ready(function () {
     });
 
 
-    $("#movieGenres").change(function(){
+    $("#movieGenres").change(function () {
         let IMAGE_BASE_URL = "https://image.tmdb.org/t/p/w185_and_h278_bestv2"
 
         // The "value" attribute of the selected option is the genre id that
@@ -259,7 +293,7 @@ $(document).ready(function () {
                 console.log(movie.title);
 
                 let movieDiv = $("<div>");
-                
+
                 movieDiv.attr({
                     // Set a class on the div that can be used to hook up events
                     class: "movie-item",
@@ -272,8 +306,8 @@ $(document).ready(function () {
 
                 movieDiv.append(movieTitle);
 
-               
-                
+
+
                 let movieImg = $("<img>");
                 movieImg.attr({
                     // Can't use shadow class here because it is used elsewhere for an event
@@ -282,7 +316,7 @@ $(document).ready(function () {
                     value: movie.id
                 });
 
-                                               
+
                 movieDiv.append(movieImg);
 
                 let overviewDiv = $("<div>");
@@ -293,12 +327,12 @@ $(document).ready(function () {
 
                 movieResultsTable.append(movieDiv);
 
-              
+
             }
         });
 
         // When you click on a movie (".movie-item")
-        $(document).on("click", ".movie-item", function() {
+        $(document).on("click", ".movie-item", function () {
             let movieId = $(this).attr("data-movie-id");
             let movieReleaseDate = $(this).attr("data-movie-release-date");
             console.log("Movie id: " + movieId);
