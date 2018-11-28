@@ -80,7 +80,7 @@ $(document).ready(function () {
         // pushes/saves user input data (ingredients entered) to Firebase
         database.ref().push ({
             whatsInTheFridge: whatsInTheFridge
-        });
+        }); 
 
         //On button click, clears/resets user input form
         $("#ingredient-input").trigger("reset");
@@ -237,16 +237,16 @@ $(document).ready(function () {
             // create a html element to hold that specific wine's description
             let specificWineDescription = $("<p>").html(results.productMatches[0].description);
 
-            let noWine = $("<p>").html(results.status.message);
-            console.log(noWine);
-            console.log(results.message);
-            console.log(results.status);
+            // let noWine = $("<p>").html(results.status.message);
+            // console.log(noWine);
+            // console.log(results.message);
+            // console.log(results.status);
 
             // appending those results to the div with id="wine-pairing"
             $("#wine-pairing").append(pairingNotes);
             $("#wine-pairing").append(specificWineSuggestion);
             $("#wine-pairing").append(specificWineDescription);
-            $("#wine-pairing").append(noWine);
+            // $("#wine-pairing").append(noWine);
 
         });
 

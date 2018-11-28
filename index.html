@@ -27,21 +27,25 @@
     <div class="container">
         <div class="row">
             <!-- Food Column-->
-            <div id="food" class="col-4 text-center">
+            <div class="col-4 text-center">
                 <h3>Food Recipe</h3>
-                <form id="recipe-request">
-                    <label for="ingredient-input"> What's in the fridge? </label>
-                    <input type="text" id="ingredient-input">
-                    <br>
-                    <!-- Button submits recipe request -->
-                    <input id="find-recipes" type="submit" value="Find my recipes">
-                </form>
-                <div id="dinner-table"></div>
+                    <form id="recipe-request">
+                        <label for="ingredient-input"> What's in the fridge? </label>
+                        <input type="text" id="ingredient-input">
+                        <br>
+                        <!-- Button submits recipe request -->
+                        <input id="find-recipes" type="submit" value="Find my recipes">
+                    </form>
+                <div id="food">
+                    <div id="dinner-table"></div>
+                </div>
                 <div id="instructions"></div>
+                <div id="button2"></div>
             </div>
             <!-- Wine Column -->
-            <div id="wine-pairing" class="col-4 text-center">
+            <div class="col-4 text-center">
                 <h3>Wine-Pairing</h3>
+                <div id="wine-pairing"></div>
             </div>
             <!-- Movie Column-->
             <div id="movies" class="col-4 text-center">
@@ -60,7 +64,7 @@
      
                 <div id="movieTable"></div>
             </div>
-        </div>>
+        </div>
     </div>
 
     <script src="assets/javascript/script.js"></script>   
