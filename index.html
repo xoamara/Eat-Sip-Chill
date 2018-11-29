@@ -40,27 +40,48 @@
     </nav>
     
     <div class="container">
-        <!-- <div class="row">
-            <div class="col-12 text-center"> -->
-               
-            <!-- </div>
-        </div>  -->
-        
-        <div class="row">
-            <div id="food" class="text-center">
-                <h3>Food Recipe</h3>
-                <form id="recipe-request">
-                    <label for="ingredient-input"><i class="fas fa-cookie-bite"></i> What's in the fridge?</label>
-                    <input type="text" id="ingredient-input">
-                    <br>
-                    <!-- Button submits recipe request -->
-                    <input id="find-recipes" type="submit" value="Find my recipes">
-                    <div id="dinner-table"></div>
-                    <div id="instructions"></div> 
-                </form>
-                
-            </div>      
-                   
+            <div class="row">
+                <!-- Food Column-->
+                <div class="col-4 text-center">
+                    <h3>Food Recipe</h3>
+                        <form id="recipe-request">
+                            <label for="ingredient-input"> What's in the fridge? <i class="fas fa-apple-alt"></i></label>
+                            <input type="text" id="ingredient-input">
+                            <br>
+                            <!-- Button submits recipe request -->
+                            <input id="find-recipes" type="submit" value="Find my recipes">
+                        </form>
+                    <div id="food">
+                        <div id="dinner-table"></div>
+                    </div>
+                    <div id="selectedRecipeTitle"></div>
+                    <div id="test1"></div>
+                    <div id="instructions"></div>
+                    <div id="button2"></div>
+                </div>
+                <!-- Wine Column -->
+                <div class="col-4 text-center">
+                    <h3>Wine-Pairing</h3>
+                    <div id="wine-pairing"></div>
+                </div>
+                <!-- Movie Column-->
+                <div id="movies" class="col-4 text-center">
+                    <h3>Suggested Movies</h3>
+     
+                    <form>
+                        <label for="movieGenres"> Movie Genres </label>
+                        <select class="custom-select" id="movieGenres">
+                            <option value="18">Drama</option>
+                            <option value="28">Action</option>
+                            <option value="35">Comedy</option>
+                            <option value="10749">Romance</option>
+                            <option value="878">Science Ficton</option>
+                        </select>
+                    </form>
+     
+                    <div id="movieTable"></div>
+                </div>
+            </div>
         </div>
     </div>
 

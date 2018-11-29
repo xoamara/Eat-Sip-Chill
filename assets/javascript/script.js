@@ -102,7 +102,8 @@ $(document).ready(function () {
         });
     });
 
-    //firebase event listener for child added
+
+    // firebase event listener for child added
     database.ref().on("child_added", function (childSnapshot) {
 
         // variable set up to access data from firebase
@@ -113,6 +114,8 @@ $(document).ready(function () {
         let key = childSnapshot.key
         console.log(key);
     });
+
+
 
     // When the user clicks on a specific recipe (."shadow"), run the code below
     $(document).on("click", ".shadow", function (event) {
@@ -168,6 +171,36 @@ $(document).ready(function () {
             // appending the recipeInstructions <div> to the <div> with id = "instrucitons"
             $("#instructions").html(recipeInstructions);
 
+            // use JQuery to display recipe title above recipeInstructions
+            let selectedRecipeTitle = $("<strong>").html(results.title);
+            console.log(selectedRecipeTitle);
+            $("#selectedRecipeTitle").html(selectedRecipeTitle);
+
+            // variable to access the arrays of "extended ingredients" from API Object
+            let recipeIngredients = results.extendedIngredients;
+            console.log(recipeIngredients);
+
+            // empty array to store "original" values pulled from each Array of "extended Ingredients"  
+            let ingredientArray = [];
+
+            // for loop to run through "extended ingredients" arrays & store "original" values of each into empty "ingredientArray" 
+            for (var j = 0; j < recipeIngredients.length; j++) {
+                
+                let ingredientsList = recipeIngredients[j].original;
+                console.log(ingredientsList);
+                ingredientArray.push(recipeIngredients[j].original);
+                console.log(ingredientArray);
+            };
+
+            let ingredientsDisplay = document.getElementById("test1");
+
+            // for loop to run through ingredients stored in the "ingredientArray" & display results in HTML. 
+            // currently data displayed into HTML is not working yet. It console logs fine.  Just need to resolve and get it to display into HTML
+            for (var k = 0; k < ingredientArray.length; k++) {
+                console.log(ingredientArray);
+
+                test1.innerHTML += "<p>" + ingredientArray[k] + "</p><br>";
+            }
         });
 
         // Bringing this variable down from the previous on click event to be used again here (scoping issue)
