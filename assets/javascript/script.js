@@ -117,9 +117,9 @@ $(document).ready(function () {
     // When the user clicks on a specific recipe (."shadow"), run the code below
     $(document).on("click", ".shadow", function (event) {
 
-        // resetting the values so that it only shows for most recently clicked recipe 
-        $("#wine-pairing").val("");
-        $("#instructions").val("");
+        // resetting the values so that it only shows for most recently clicked recipe FIXME: I Don't think we need these
+        // $("#wine-pairing").val("");
+        // $("#instructions").val("");
 
         // prevent the page from refreshing
         event.preventDefault();
@@ -151,11 +151,16 @@ $(document).ready(function () {
 
             // Adding a conditional statement to let the user know if the recipe they selected lacks instructions the user is notified
             if (results.instructions == null || results.instructions.length === 0) {
-                console.log("Sorry, there are no instructions for this recipe.")
-            }
+                
+                let noInstructions = "Sorry, there are no instructions for this recipe."
+                console.log(noInstructions)
+
+                // FIXME: Not sure why this is not working tried .text(), .html(), and .append()... 
+                $("#instructions").append(noInstructions);
+            };
 
             // hide the <div> with id = "food"
-            $("#food").hide()
+            $("#food").hide();
 
             // dynamically creating a new div with the recipe instructions inside of it
             let recipeInstructions = $("<p>").html(results.instructions);
@@ -200,17 +205,6 @@ $(document).ready(function () {
             let results = response;
             console.log(results);
 
-<<<<<<< HEAD
-            if (results.status === "failure") {
-                console.log("Dude Just go pick up 2 forties of Mad Dog 2020");
-
-            } else if (results.pairedWines == null || results.pairedWines.length === 0) {
-                console.log("The wine store is apparently empty.");
-            } else {
-                console.log("fancy wine");
-            };
-
-=======
             //If AJAX call returns failure or empty array or 0 array data do this
 
             let errorArray = {
@@ -227,8 +221,7 @@ $(document).ready(function () {
 
                 $("#wine-pairing").append(failureMessage);
 
-                //TODO Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
-                
+                //TODO: Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
                 let errorImage = $("<img>");
                 errorImage.attr({
                     class: "img-fluid img-thumbnail rounded",
@@ -244,7 +237,6 @@ $(document).ready(function () {
                 $("#wine-pairing").append(failureMessage);
 
             }
->>>>>>> 820dfb5ee425f0885fffcafc26e037c5c14fd2a6
 
             // creating divs to hold the specific wine data suggested from spoonacular
             let pairingNotes = $("<p>").html(results.pairingText);
@@ -299,7 +291,7 @@ $(document).ready(function () {
 
         // The "value" attribute of the selected option is the genre id that
         // will be used in the ajax call
-        let movieGenre = $("#movieGenres").val();
+        let movieGenre = $("#movieGenres").val().trim();
         console.log(movieGenre);
 
         //Ajax call for Movies based on popularity for selected genre
