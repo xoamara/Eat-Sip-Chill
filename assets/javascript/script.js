@@ -186,18 +186,14 @@ $(document).ready(function () {
 
             }
 
-            let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
+            function failureMessage() {
 
-            if (results.status === "failure") {
-                //Message goes to div when there is a status failure on the object return
-                let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
+                let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
 
-                //TODO Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
-                
                 let errorImage = $("<img>");
                 errorImage.attr({
                     class: "img-fluid img-thumbnail rounded",
-                    src: "assets/images/error-images/image"+randomFlavor+".jpg",
+                    src: "assets/images/error-images/image" + randomFlavor + ".jpg",
                 })
 
                 let errorDescription = $("<p>").html(errorArray.title);
@@ -207,28 +203,31 @@ $(document).ready(function () {
                 $("#wine-pairing").append(errorImage);
                 $("#wine-pairing").append(errorFlavor);
 
-
-            } else if (results.pairedWines == null || results.pairedWines.length === 0) {
-                let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
-
-                $("#wine-pairing").append(failureMessage);
-
             }
 
-            // creating divs to hold the specific wine data suggested from spoonacular
-            let pairingNotes = $("<p>").html(results.pairingText);
+            if (results.status === "failure") {
+                failureMessage();
 
-            // create a html element to hold the name of a specifically suggested wine
-            let specificWineSuggestion = $("<p>").html(results.productMatches[0].title);
+            } else if (results.pairedWines == null || results.pairedWines.length === 0) {
+                failureMessage();
 
-            // create a html element to hold that specific wine's description
-            let specificWineDescription = $("<p>").html(results.productMatches[0].description);
+            } else {
 
-            // appending those results to the div with id="wine-pairing"
-            $("#wine-pairing").append(pairingNotes);
-            $("#wine-pairing").append(specificWineSuggestion);
-            $("#wine-pairing").append(specificWineDescription);
-            // $("#wine-pairing").append(noWine);
+                // creating divs to hold the specific wine data suggested from spoonacular
+                let pairingNotes = $("<p>").html(results.pairingText);
+
+                // create a html element to hold the name of a specifically suggested wine
+                let specificWineSuggestion = $("<p>").html(results.productMatches[0].title);
+
+                // create a html element to hold that specific wine's description
+                let specificWineDescription = $("<p>").html(results.productMatches[0].description);
+
+                // appending those results to the div with id="wine-pairing"
+                $("#wine-pairing").append(pairingNotes);
+                $("#wine-pairing").append(specificWineSuggestion);
+                $("#wine-pairing").append(specificWineDescription);
+
+            }
 
         });
 
