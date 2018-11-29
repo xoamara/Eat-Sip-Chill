@@ -155,10 +155,10 @@ $(document).ready(function () {
             let recipeIngredients = results.extendedIngredients;
             console.log(recipeIngredients);
 
-            // empty array to store values pulled from each Array of "extended Ingredients"  
+            // empty array to store "original" values pulled from each Array of "extended Ingredients"  
             let ingredientArray = [];
 
-            // for loop to run through "extended ingredients" arrays to push each ingredient into empty ingredient array 
+            // for loop to run through "extended ingredients" arrays & store "original" values of each into empty "ingredientArray" 
             for (var j = 0; j < recipeIngredients.length; j++) {
                 
                 let ingredientsList = recipeIngredients[j].original;
@@ -167,7 +167,8 @@ $(document).ready(function () {
                 console.log(ingredientArray);
             };
 
-            // for loop to run through ingredients stored in the "ingredientArray" & display results in HTML.
+            // for loop to run through ingredients stored in the "ingredientArray" & display results in HTML. 
+            // currently data displayed into HTML is not working yet. It console logs fine.  Just need to resolve and get it to display into HTML
             for (var k = 0; k < ingredientArray.length; k++) {
                 console.log(ingredientArray);
                 let eachIngredient = $("<p>");
