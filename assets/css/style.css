@@ -1,3 +1,72 @@
+.jumbotron {
+  margin-top: 20px;
+  margin-bottom: 70px;
+  font-family: 'Gloria Hallelujah', cursive;
+  font-size: 60px;
+}
+
+body {
+background-image:url("../images/kitchen-2.jpg");
+background-repeat: no-repeat;
+background-attachment: fixed;
+background-size: cover; 
+background-position: 50% 50%;                          
+}
+
+#food {
+  margin: 0 auto;
+  text-align: center;
+  display: inline-block;
+  font-display: solid;
+  background-color: rgb(182, 182, 182);
+  padding: 15px;
+  font-family: 'Gloria Hallelujah', cursive;
+}
+
+#navigation {
+    display: inline-block; 
+    position: relative;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    font-family: Helvetica, sans-serif;
+    font-size: 18px;
+    line-height: 1em;
+    border-radius: 2px; /* Little curvature in the borders */
+    font-family: 'Gloria Hallelujah', cursive;
+}
+
+
+#wine-pairing {
+  margin: 0 auto;
+  background-color: rgb(182, 182, 182);
+  padding: 15px;
+  font-family: 'Gloria Hallelujah', cursive; 
+}
+
+#movies {
+  margin: 0 auto;
+  background-color: rgb(182, 182, 182);
+  font-family: 'Gloria Hallelujah', cursive;
+  padding: 15px;
+}
+
+#movieGenres {
+  font-weight: bold;
+  font-family: 'Gloria Hallelujah', cursive;
+  padding: 15px;
+}
+
+#ingredient-input {
+  margin-bottom: 10px;
+  font-size: 20px;
+}
+
+#find-recipes {
+  font-size: 20px;
+}
+
+
 /* /body { */
     /* padding: 2rem 2rem; */
     /* margin-bottom: 0px; */
@@ -8,22 +77,30 @@
     /* text-shadow: rgb(146, 145, 145) 0.3em 0.3em 0.3em; */
   /* } */
 
- 
-  /* form {
-      text-align: center;
-  } */
-/* 
-  #dinner-table {
-      text-align: center;
-  } */
-/*
-  #food  {
-    width: 400px;
-    text-align: center;
-    background-color: beige;
-   
-  }
-  */
+  /* #kitchenMain {
+  background-image:url("../images/kitchen-2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; 
+  background-position: 50% 50%; 
+}
 
+#diningMain {
+  background-image:url("../images/table.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; 
+  background-position: 50% 50%; 
+}
+
+#movieMain {
+  background-image:url("../images/kitchen-2.jpg");
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  background-size: cover; 
+  background-position: 50% 50%; 
+} */
+
+ 
 
  
