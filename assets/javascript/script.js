@@ -146,6 +146,35 @@ $(document).ready(function () {
             // appending the recipeInstructions <div> to the <div> with id = "instrucitons"
             $("#instructions").html(recipeInstructions);
 
+            // use JQuery to display recipe title above recipeInstructions
+            let selectedRecipeTitle = $("<strong>").html(results.title);
+            console.log(selectedRecipeTitle);
+            $("#selectedRecipeTitle").html(selectedRecipeTitle);
+
+            // variable to access the arrays of "extended ingredients" from API Object
+            let recipeIngredients = results.extendedIngredients;
+            console.log(recipeIngredients);
+
+            // empty array to store values pulled from each Array of "extended Ingredients"  
+            let ingredientArray = [];
+
+            // for loop to run through "extended ingredients" arrays to push each ingredient into empty ingredient array 
+            for (var j = 0; j < recipeIngredients.length; j++) {
+                
+                let ingredientsList = recipeIngredients[j].original;
+                console.log(ingredientsList);
+                ingredientArray.push(recipeIngredients[j].original);
+                console.log(ingredientArray);
+            };
+
+            // for loop to run through ingredients stored in the "ingredientArray" & display results in HTML.
+            for (var k = 0; k < ingredientArray.length; k++) {
+                console.log(ingredientArray);
+                let eachIngredient = $("<p>");
+                eachIngredient.attr("original", ingredientArray[k]);
+                console.log(eachIngredient);
+                $("#ingredientsDisplay").append(eachIngredient);
+            }
         });
 
         // Bringing this variable down from the previous on click event to be used again here (scoping issue)
