@@ -23,6 +23,18 @@ $(document).ready(function () {
         // prevent the page from refreshing
         event.preventDefault();
 
+        // Hide the back-button
+        $("#back-button").hide();
+
+        // Erasing the text inside the wine-pairing div
+        $("#wine-pairing").text("");
+
+        // Erasing the text inside the instructions div
+        $("#instructions").text("");
+
+        // show the div with id = "food" 
+        $("#food").show();
+
         // storing the user input in whatsInTheFridge variable so that it can be concatenated into the spoonacular search endpoint URL
         let whatsInTheFridge = $("#ingredient-input").val().trim();
         console.log(whatsInTheFridge);
@@ -108,9 +120,9 @@ $(document).ready(function () {
     // When the user clicks on a specific recipe (."shadow"), run the code below
     $(document).on("click", ".shadow", function (event) {
 
-        // resetting the values so that it only shows for most recently clicked recipe 
-        $("#wine-pairing").val("");
-        $("#instructions").val("");
+        // resetting the values so that it only shows for most recently clicked recipe FIXME: I Don't think we need these
+        // $("#wine-pairing").val("");
+        // $("#instructions").val("");
 
         // prevent the page from refreshing
         event.preventDefault();
@@ -140,8 +152,18 @@ $(document).ready(function () {
             let results = response;
             console.log(results);
 
+            // Adding a conditional statement to let the user know if the recipe they selected lacks instructions the user is notified
+            if (results.instructions == null || results.instructions.length === 0) {
+                
+                let noInstructions = "Sorry, there are no instructions for this recipe."
+                console.log(noInstructions)
+
+                // FIXME: Not sure why this is not working tried .text(), .html(), and .append()... 
+                $("#instructions").append(noInstructions);
+            };
+
             // hide the <div> with id = "food"
-            $("#food").hide()
+            $("#food").hide();
 
             // dynamically creating a new div with the recipe instructions inside of it
             let recipeInstructions = $("<p>").html(results.instructions);
@@ -185,8 +207,13 @@ $(document).ready(function () {
         let whatsInTheFridge = $("#ingredient-input").val().trim();
         console.log(whatsInTheFridge);
 
-        // TODO: still working on returning wine pairing information but there is an object in the console
-        let winePairingURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + whatsInTheFridge + "&maxPrice=15";
+        // Since the wine pairing really only wants one word this line of code takes the first word from whatsInTheFridge and stores it in a variable to be used for the wine pairing ajax call.  I actually do not know exactly how this is working and could use some explanation of the .replace method.
+        // https://stackoverflow.com/questions/18558417/get-first-word-of-string
+        let firstIngredient = whatsInTheFridge.replace(/,.*/, '');
+        console.log(firstIngredient);
+
+        // set the wine pairing API URL to the winePairingURL variable and use the first ingredient from whatsInTheFridge for the food input of the winePairingURL so that the user is more likely to get a pairing suggestion than if we use the entire string
+        let winePairingURL = "https://spoonacular-recipe-food-nutrition-v1.p.mashape.com/food/wine/pairing?food=" + firstIngredient + "&maxPrice=15";
 
         // Clear value of search input 
         // FIXME: Nate moved this so that he could use the whatsInTheFridge variable again for the second on click event so that he could get the wine pairing returned based on the user food input 
@@ -223,6 +250,7 @@ $(document).ready(function () {
 
                 let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
 
+                //TODO: Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
                 let errorImage = $("<img>");
                 errorImage.attr({
                     class: "img-fluid img-thumbnail rounded",
@@ -300,7 +328,7 @@ $(document).ready(function () {
 
         // The "value" attribute of the selected option is the genre id that
         // will be used in the ajax call
-        let movieGenre = $("#movieGenres").val();
+        let movieGenre = $("#movieGenres").val().trim();
         console.log(movieGenre);
 
         //Ajax call for Movies based on popularity for selected genre
