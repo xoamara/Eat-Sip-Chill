@@ -26,64 +26,44 @@
     <div class="container"> 
         <div class="jumbotron" style="background-color: rgb(252, 191, 151) ; color: white;">
             <h1 class="text-center">
-                <strong><i class="fas fa-utensils"></i> Cheap <i class="fas fa-film"></i> Date <i class="fas fa-wine-bottle"></i></strong>
+                <strong><i class="fas fa-utensils"></i> Cheap <i class="fas fa-film"></i> Date <i class="fas fa-wine-bottle"></i></strong>                        
             </h1>
         </div>
     </div> 
 
     <nav aria-label="breadcrumb">
         <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Kitchen</li>
-            <li class="breadcrumb-item"><a href="dining.html">Dining Room</a></li>          
-            <li class="breadcrumb-item"><a href="movie.html">Movie Room</a></li> 
+            <li class="breadcrumb-item"><a href="index.html">Kitchen</a></li>           
+            <li class="breadcrumb-item"><a href="dining.html">Dining Room</a></li>
+            <li class="breadcrumb-item active" aria-current="page">Movie Room</li>
         </ol>
     </nav>
     
-    <div class="container">
-            <div class="row">
-                <!-- Food Column-->
-                <div class="col-4 text-center">
-                    <h3>Food Recipe</h3>
-                        <form id="recipe-request">
-                            <label for="ingredient-input"> What's in the fridge? <i class="fas fa-apple-alt"></i></label>
-                            <input type="text" id="ingredient-input">
-                            <br>
-                            <!-- Button submits recipe request -->
-                            <input id="find-recipes" type="submit" value="Find my recipes">
-                        </form>
-                    <div id="food">
-                        <div id="dinner-table"></div>
-                    </div>
-                    <div id="selectedRecipeTitle"></div>
-                    <div id="test1"></div>
-                    <div id="instructions"></div>
-                    <div id="button2"></div>
-                </div>
-                <!-- Wine Column -->
-                <div class="col-4 text-center">
-                    <h3>Wine-Pairing</h3>
-                    <div id="wine-pairing"></div>
-                </div>
-                <!-- Movie Column-->
-                <div id="movies" class="col-4 text-center">
-                    <h3>Suggested Movies</h3>
-     
-                    <form>
-                        <label for="movieGenres"> Movie Genres </label>
+    <div class="container">     
+        <div class="row">
+            
+        
+            <div id="movies" class="text-center col-6">
+                <h3>Suggested Movies</h3>
+                   <form>
                         <select class="custom-select" id="movieGenres">
+                            <option value="">Choose Genre</option>
                             <option value="18">Drama</option>
                             <option value="28">Action</option>
                             <option value="35">Comedy</option>
                             <option value="10749">Romance</option>
                             <option value="878">Science Ficton</option>
                         </select>
-                    </form>
-     
-                    <div id="movieTable"></div>
-                </div>
+                    </form>            
+                <div id="movieTable"></div>                            
             </div>
         </div>
     </div>
+
+    
+    <!-- <div id="instructions"></div>
+
+    <div id="wine-pairing"></div> -->
 
     <div id="button2"></div>
 
