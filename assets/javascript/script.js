@@ -192,18 +192,21 @@ $(document).ready(function () {
                 //Message goes to div when there is a status failure on the object return
                 let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
 
-                $("#wine-pairing").append(failureMessage);
-
                 //TODO Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
                 
                 let errorImage = $("<img>");
                 errorImage.attr({
                     class: "img-fluid img-thumbnail rounded",
-                    // src: "/../images/error-images/image"+randomFlavor+".jpg",
+                    src: "assets/images/error-images/image"+randomFlavor+".jpg",
                 })
 
                 let errorDescription = $("<p>").html(errorArray.title);
                 let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
+
+                $("#wine-pairing").append(errorDescription);
+                $("#wine-pairing").append(errorImage);
+                $("#wine-pairing").append(errorFlavor);
+
 
             } else if (results.pairedWines == null || results.pairedWines.length === 0) {
                 let failureMessage = $("<p>").html("Sorry dude, go buy some "+ errorArray.title + " " + errorArray.flavors[randomFlavor]+ ".");
