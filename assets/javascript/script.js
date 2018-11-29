@@ -90,7 +90,8 @@ $(document).ready(function () {
         });
     });
 
-    //firebase event listener for child added
+
+    // firebase event listener for child added
     database.ref().on("child_added", function (childSnapshot) {
 
         // variable set up to access data from firebase
@@ -101,6 +102,8 @@ $(document).ready(function () {
         let key = childSnapshot.key
         console.log(key);
     });
+
+
 
     // When the user clicks on a specific recipe (."shadow"), run the code below
     $(document).on("click", ".shadow", function (event) {
