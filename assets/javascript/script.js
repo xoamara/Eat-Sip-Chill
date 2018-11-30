@@ -389,18 +389,23 @@ $(document).ready(function () {
             }
         });
 
-        // When you click on a movie (".movie-item")
-        $(document).on("click", ".movie-item", function () {
-            let movieId = $(this).attr("data-movie-id");
-            let movieReleaseDate = $(this).attr("data-movie-release-date");
-            console.log("Movie id: " + movieId);
-            console.log("Movie Release date: " + movieReleaseDate);
-            $(this).children(".movie-overview").toggle();
-            let movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + api_key;
-            console.log(movieUrl);
-            // FIXME: Do something more interesting
-        })
+      
     });
+
+      // When you click on a movie (".movie-item")
+      $(document).on("click", ".movie-item", function () {
+        console.log("clicked");
+        let movieId = $(this).attr("data-movie-id");
+        let movieReleaseDate = $(this).attr("data-movie-release-date");
+        console.log("Movie id: " + movieId);
+        console.log("Movie Release date: " + movieReleaseDate);
+        console.log($(this).children(".movie-overview"))
+        $(this).children(".movie-overview").toggle();
+        console.log("did toggle");
+        let movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + api_key;
+        console.log(movieUrl);
+        // FIXME: Do something more interesting
+    })
 
 });
 
