@@ -13,7 +13,7 @@
   
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
     <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
-
+    <link href="https://fonts.googleapis.com/css?family=Alice" rel="stylesheet">
     <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
@@ -22,35 +22,23 @@
     <!-- https://docs.rapidapi.com/docs/javascript -->
     <script src="https://storage.googleapis.com/code-snippets/rapidapi.min.js"></script>
 
-    <!-- <style>
-    body {  background-image:url("../images/kitchen-2.jpg");
-            background-repeat: no-repeat;
-            background-attachment: fixed;
-            background-size: cover; 
-            background-position: 50% 50%;
-    }
-    </style> -->
-
 </head>
 
-<body>
-
-   
+<body id="kitchen"> 
     <div class="container"> 
-        <div class="jumbotron" style="background-color: rgb(240, 194, 163) ; color: rgb(240, 237, 235)">
-          
+        <div class="jumbotron" style="background-color: rgb(25, 60, 78) ; color: rgb(240, 237, 235)">
             <h1 class="text-center">
-                <strong><i class="fas fa-utensils"></i> Cheap <i class="fas fa-film"></i> Date <i class="fas fa-wine-bottle"></i> </strong>
+                <strong>Eat <i class="fas fa-utensils"> </i> Sipp <i class="fas fa-wine-bottle"></i> and Chill <i class="fas fa-film"></i> . . . </strong>
             </h1>
         </div>
-    </div>
+    </div> 
+
 
 
     <div id="navigation">
         <nav aria-label="breadcrumb">
             <ol class="breadcrumb">
-                <li class="breadcrumb-item active" aria-current="page">Kitchen</li>
-                <li class="breadcrumb-item"><a href="dining.html">Dining Room</a></li>          
+                <li class="breadcrumb-item active" aria-current="page">Kitchen</li>       
                 <li class="breadcrumb-item"><a href="movie.html">Movie Room</a></li> 
             </ol>
         </nav>
@@ -68,31 +56,31 @@
                         <br>
                         <!-- Button submits recipe request -->
                         <input id="find-recipes" type="submit" value="Find my recipes">
-                        <div id="dinner-table"></div>  
-                        <div id="instructions"></div>
-                    </form>                   
-                                    
-                <div id="selectedRecipeTitle"></div>
-                <div id="test1"></div>                  
-                <div id="button2"></div>
+                    </form>                             
+            
+            <!-- <div class="row"> -->
+                <div id="wine-pairing" class="text-center">
+                    
+                    <h3>Wine-Pairing</h3>
+                    
+                    <div id="dinner-table"></div>  
+                    <div id="instructions"></div>
+                    <div id="selectedRecipeTitle"></div>
+                    <div id="test1"></div>                  
+                    <div id="button2"></div>
+                </div>
             </div>
         </div>
-
-        
+       
 <!--                            
-                    Button submits recipe request
-                    <<input id="find-recipes" type="submit" value= "What's in the fridge?"> -->
-                    <!-- <input id="find-recipes" type="submit" value="Find my recipes">
-                    <div id="dinner-table"></div>
-                    <div id="instructions"></div> 
-                </form>
-                
-            </div>      
-                    
-        </div>
-        -->
-
-
+            Button submits recipe request
+            <<input id="find-recipes" type="submit" value= "What's in the fridge?"> -->
+            <!-- <input id="find-recipes" type="submit" value="Find my recipes">
+            <div id="dinner-table"></div>
+            <div id="instructions"></div>          
+       </div>                 
+   </div>
+    -->
     <!-- Wine Column -->
     <!-- <div class="col-4 text-center">
         <h3>Wine-Pairing</h3>
@@ -100,22 +88,9 @@
     </div> -->
     <!-- Movie Column-->
     <!-- <div id="movies" class="col-4 text-center">
-        <h3>Suggested Movies</h3>
-
-        <form>
-            <label for="movieGenres"> Movie Genres </label>
-            <select class="custom-select" id="movieGenres">
-                <option value="18">Drama</option>
-                <option value="28">Action</option>
-                <option value="35">Comedy</option>
-                <option value="10749">Romance</option>
-                <option value="878">Science Ficton</option>
-            </select>
-        </form>
-
-        <div id="movieTable"></div>
+    <h3>Suggested Movies</h3>
     </div> -->
-            <!-- </div>
+ <!-- </div>
         </div>
     -->
    
