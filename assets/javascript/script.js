@@ -58,9 +58,9 @@ $(document).ready(function () {
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
-            header: {
-                'Access-Control-Allow-Headers': '*'
-            },
+            // header: {
+            //     'Access-Control-Allow-Headers': '*'
+            // },
             dataType: "Json",
             method: "GET",
             url: whatsInTheFridgeURL,
@@ -143,9 +143,9 @@ $(document).ready(function () {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
             
-            header: {
-                'Access-Control-Allow-Headers': '*'
-            },
+            // header: {
+            //     'Access-Control-Allow-Headers': '*'
+            // },
 
             dataType: "Json",
             method: "GET",
@@ -231,9 +231,9 @@ $(document).ready(function () {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
 
-            header: {
-                'Access-Control-Allow-Headers': '*'
-            },
+            // header: {
+            //     'Access-Control-Allow-Headers': '*'
+            // },
 
             dataType: "Json",
             method: "GET",
