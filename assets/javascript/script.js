@@ -58,9 +58,13 @@ $(document).ready(function () {
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
+            header: {
+                'Access-Control-Allow-Headers': '*'
+            },
             dataType: "Json",
             method: "GET",
-            url: whatsInTheFridgeURL
+            url: whatsInTheFridgeURL,
+
 
             // once the data has been returned run the code below
         }).then(function (response) {
@@ -127,8 +131,6 @@ $(document).ready(function () {
         // prevent the page from refreshing
         event.preventDefault();
 
-
-
         // find the value attribute of $(this) recipeImage and hold it in the uniqueRecipeId variable so that it can be dynamically inserted into the queryURL of the  unique recipe information api call.  
         let uniqueRecipeId = $(this).attr("value");
 
@@ -139,6 +141,10 @@ $(document).ready(function () {
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
+            },
+            
+            header: {
+                'Access-Control-Allow-Headers': '*'
             },
 
             dataType: "Json",
@@ -154,7 +160,7 @@ $(document).ready(function () {
 
             // Adding a conditional statement to let the user know if the recipe they selected lacks instructions the user is notified
             if (results.instructions == null || results.instructions.length === 0) {
-                
+
                 let noInstructions = "Sorry, there are no instructions for this recipe."
                 console.log(noInstructions)
 
@@ -185,7 +191,7 @@ $(document).ready(function () {
 
             // for loop to run through "extended ingredients" arrays & store "original" values of each into empty "ingredientArray" 
             for (var j = 0; j < recipeIngredients.length; j++) {
-                
+
                 let ingredientsList = recipeIngredients[j].original;
                 console.log(ingredientsList);
                 ingredientArray.push(recipeIngredients[j].original);
@@ -223,6 +229,10 @@ $(document).ready(function () {
         $.ajax({
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
+            },
+
+            header: {
+                'Access-Control-Allow-Headers': '*'
             },
 
             dataType: "Json",
