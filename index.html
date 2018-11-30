@@ -11,7 +11,8 @@
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO"
         crossorigin="anonymous">
     <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.5.0/css/all.css" integrity="sha384-B4dIYHKNBt8Bc12p+WXckhzcICo0wtJAoU8YZTY5qE0Id1GSseTk6S+L3BlXeVIU" crossorigin="anonymous">
-  <link rel="stylesheet" type="text/css" href="assets/css/style.css">
+    <link href="https://fonts.googleapis.com/css?family=Gloria+Hallelujah" rel="stylesheet">
+    <link rel="stylesheet" type="text/css" href="assets/css/style.css">
     <script src="https://code.jquery.com/jquery-3.3.1.js" integrity="sha256-2Kok7MbOyxpgUVvAk/HJ2jigOSYS2auK4Pfzbm7uH60="
         crossorigin="anonymous"></script>
     <script src="https://www.gstatic.com/firebasejs/5.5.8/firebase.js"></script>
@@ -19,80 +20,107 @@
     <!-- https://docs.rapidapi.com/docs/javascript -->
     <script src="https://storage.googleapis.com/code-snippets/rapidapi.min.js"></script>
 
+    <!-- <style>
+    body {  background-image:url("../images/kitchen-2.jpg");
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            background-size: cover; 
+            background-position: 50% 50%;
+    }
+    </style> -->
+
 </head>
 
 <body>
 
+   
     <div class="container"> 
-        <div class="jumbotron" style="background-color: rgb(252, 191, 151) ; color: white;">
+        <div class="jumbotron" style="background-color: rgb(240, 194, 163) ; color: rgb(240, 237, 235)">
             <h1 class="text-center">
-                <strong><i class="fas fa-utensils"></i> Cheap <i class="fas fa-film"></i> Date <i class="fas fa-wine-bottle"></i></strong>
+                <strong><i class="fas fa-utensils"></i> Cheap <i class="fas fa-film"></i> Date <i class="fas fa-wine-bottle"></i> </strong>
             </h1>
         </div>
     </div> 
 
-    <nav aria-label="breadcrumb">
-        <ol class="breadcrumb">
-            <li class="breadcrumb-item active" aria-current="page">Kitchen</li>
-            <li class="breadcrumb-item"><a href="dining.html">Dining Room</a></li>          
-            <li class="breadcrumb-item"><a href="movie.html">Movie Room</a></li> 
-        </ol>
-    </nav>
-    
-    <div class="container">
-            <div class="row">
-                <!-- Food Column-->
-                <div class="col-4 text-center">
-                    <h3>Food Recipe</h3>
-                        <form id="recipe-request">
-                            <label for="ingredient-input"> What's in the fridge? <i class="fas fa-apple-alt"></i></label>
-                            <input type="text" id="ingredient-input">
-                            <br>
-                            <!-- Button submits recipe request -->
-                            <input id="find-recipes" type="submit" value="Find my recipes">
-                        </form>
-                    <div id="food">
-                        <div id="dinner-table"></div>
-                    </div>
-                    <div id="selectedRecipeTitle"></div>
-                    <div id="test1"></div>
-                    <div id="instructions"></div>
-                    <div id="button2"></div>
-                </div>
-                <!-- Wine Column -->
-                <div class="col-4 text-center">
-                    <h3>Wine-Pairing</h3>
-                    <div id="wine-pairing"></div>
-                </div>
-                <!-- Movie Column-->
-                <div id="movies" class="col-4 text-center">
-                    <h3>Suggested Movies</h3>
-     
-                    <form>
-                        <label for="movieGenres"> Movie Genres </label>
-                        <select class="custom-select" id="movieGenres">
-                            <option value="18">Drama</option>
-                            <option value="28">Action</option>
-                            <option value="35">Comedy</option>
-                            <option value="10749">Romance</option>
-                            <option value="878">Science Ficton</option>
-                        </select>
-                    </form>
-     
-                    <div id="movieTable"></div>
-                </div>
+    <div id="navigation">
+        <nav aria-label="breadcrumb">
+            <ol class="breadcrumb">
+                <li class="breadcrumb-item active" aria-current="page">Kitchen</li>
+                <li class="breadcrumb-item"><a href="dining.html">Dining Room</a></li>          
+                <li class="breadcrumb-item"><a href="movie.html">Movie Room</a></li> 
+            </ol>
+        </nav>
+    </div>  
+        
+
+        <div class="row">
+            <!-- Food Column-->
+            <div id="food" class="text-center">
+                <h3>Food Recipe</h3>
+                <h5><i class="fas fa-cookie-bite"></i> What's in the fridge?</h5> 
+                    <form id="recipe-request">
+                        <!-- <label for="ingredient-input"> What's in the fridge? <i class="fas fa-apple-alt"></i></label> -->
+                        <input type="text" id="ingredient-input">
+                        <br>
+                        <!-- Button submits recipe request -->
+                        <input id="find-recipes" type="submit" value="Find my recipes">
+                        <div id="dinner-table"></div>  
+                        <div id="instructions"></div>
+                    </form>                   
+                                    
+                <div id="selectedRecipeTitle"></div>
+                <div id="test1"></div>                  
+                <div id="button2"></div>
             </div>
         </div>
-    </div>
 
-    <div id="button2"></div>
+        
+<!--                            
+                    Button submits recipe request
+                    <!-- <input id="find-recipes" type="submit" value= "What's in the fridge?"> -->
+                    <!-- <input id="find-recipes" type="submit" value="Find my recipes">
+                    <div id="dinner-table"></div>
+                    <div id="instructions"></div> 
+                </form>
+                
+            </div>      
+                    
+        </div>
+        -->
 
-    
+
+    <!-- Wine Column -->
+    <!-- <div class="col-4 text-center">
+        <h3>Wine-Pairing</h3>
+        <div id="wine-pairing"></div>
+    </div> -->
+    <!-- Movie Column-->
+    <!-- <div id="movies" class="col-4 text-center">
+        <h3>Suggested Movies</h3>
+
+        <form>
+            <label for="movieGenres"> Movie Genres </label>
+            <select class="custom-select" id="movieGenres">
+                <option value="18">Drama</option>
+                <option value="28">Action</option>
+                <option value="35">Comedy</option>
+                <option value="10749">Romance</option>
+                <option value="878">Science Ficton</option>
+            </select>
+        </form>
+
+        <div id="movieTable"></div>
+    </div> -->
+            <!-- </div>
+        </div>
+    -->
+   
 
     <script src="assets/javascript/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49" crossorigin="anonymous"></script>
     <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/js/bootstrap.min.js" integrity="sha384-ChfqqxuZUCnJSK3+MXmPNIyE6ZbWh2IMqE241rYiqJxyMiZ6OW/JmZQ5stwEULTy"
         crossorigin="anonymous"></script>
+
 </body>
 
 </html>
