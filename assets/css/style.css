@@ -1,27 +1,38 @@
 .jumbotron {
-  margin-top: 20px;
-  margin-bottom: 70px;
-  font-family: 'Gloria Hallelujah', cursive;
-  font-size: 60px;
+    margin-top: 20px;
+    margin-bottom: 70px;
+    font-family: 'Alice', 'serif';
+    font-size: 60px;  
+    text-shadow: 6px 6px rgba(18, 18, 19, 0.541);
+    text-align: center;  
+  /* z-index:2  */
 }
 
-body {
-background-image:url("../images/kitchen-2.jpg");
-background-repeat: no-repeat;
-background-attachment: fixed;
-background-size: cover; 
-background-position: 50% 50%;                          
-}
+/* body#kitchen {
+    background-image:url("../images/kitchen-2.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+    background-position: 50% 50%;                        
+} */
+
+body#movie {
+    background-image:url("../images/movie-3.jpg");
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover; 
+    background-position: 50% 50%;     
+  }
 
 #food {
-  margin: 0 auto;
-  text-align: center;
-  display: inline-block;
-  font-display: solid;
-  background-color: rgb(182, 182, 182);
-  padding: 15px;
-  font-family: 'Gloria Hallelujah', cursive;
-}
+    margin: 0 auto;
+    text-align: center;
+    display: inline-block;
+    font-display: solid;
+    background-color: rgb(182, 182, 182);
+    padding: 15px;
+    font-family: 'Alice', 'serif';
+ }
 
 #navigation {
     display: inline-block; 
@@ -29,33 +40,31 @@ background-position: 50% 50%;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    font-family: Helvetica, sans-serif;
-    font-size: 18px;
+    font-family:'Alice', 'serif';
+    font-size: 20px;
+    font-weight: bold;
     line-height: 1em;
     border-radius: 2px; /* Little curvature in the borders */
-    font-family: 'Gloria Hallelujah', cursive;
-}
+    font-family: 'Alice', 'serif';
+  }
 
 
 #wine-pairing {
   margin: 0 auto;
   background-color: rgb(182, 182, 182);
   padding: 15px;
-  font-family: 'Gloria Hallelujah', cursive; 
+  font-family: 'Alice', 'serif'; 
 }
 
 #movies {
   margin: 0 auto;
-  background-color: rgb(182, 182, 182);
-  font-family: 'Gloria Hallelujah', cursive;
+  background-color: rgb(255, 229, 143);
+  font-family: 'Alice', 'serif';
   padding: 15px;
+  font-size: 20px;
+  font-weight: bold;
 }
 
-#movieGenres {
-  font-weight: bold;
-  font-family: 'Gloria Hallelujah', cursive;
-  padding: 15px;
-}
 
 #ingredient-input {
   margin-bottom: 10px;
@@ -66,40 +75,6 @@ background-position: 50% 50%;
   font-size: 20px;
 }
 
-
-/* /body { */
-    /* padding: 2rem 2rem; */
-    /* margin-bottom: 0px; */
-    /* background-image: url("../images/food2.jpeg"); */
-    /* background-position: 0% 10%; */
-    /* background-size: cover; */
-    /* background-repeat: no-repeat;   */ 
-    /* text-shadow: rgb(146, 145, 145) 0.3em 0.3em 0.3em; */
-  /* } */
-
-  /* #kitchenMain {
-  background-image:url("../images/kitchen-2.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover; 
-  background-position: 50% 50%; 
-}
-
-#diningMain {
-  background-image:url("../images/table.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover; 
-  background-position: 50% 50%; 
-}
-
-#movieMain {
-  background-image:url("../images/kitchen-2.jpg");
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-  background-size: cover; 
-  background-position: 50% 50%; 
-} */
 
  
 

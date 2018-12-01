@@ -58,9 +58,13 @@ $(document).ready(function () {
             beforeSend: function (request) {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
-            header: {
-                'Access-Control-Allow-Headers': '*'
-            },
+            
+            // headers: {
+            //     // 'Access-Control-Allow-Origin': '*',
+            //     // 'X-Mashape-Key': "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc",
+            //     // 'X-Mashape-Key': "ZpzURN2g7zmshx6acoveSs7Ys9cMp1oAziAjsn6nUbzwubliTh"
+            // },
+            
             dataType: "Json",
             method: "GET",
             url: whatsInTheFridgeURL,
@@ -72,6 +76,8 @@ $(document).ready(function () {
             // variable holding the ajax data object for the recipe search
             let results = response;
             console.log(results);
+
+            // Variable for the recipe response
             let SITE_BASE = "https://spoonacular.com/recipes/";
 
             // Clear previous search results
@@ -143,9 +149,9 @@ $(document).ready(function () {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
             
-            header: {
-                'Access-Control-Allow-Headers': '*'
-            },
+            // header: {
+            //     "Access-Control-Allow-Origin": "*"
+            // },
 
             dataType: "Json",
             method: "GET",
@@ -161,7 +167,7 @@ $(document).ready(function () {
             // Adding a conditional statement to let the user know if the recipe they selected lacks instructions the user is notified
             if (results.instructions == null || results.instructions.length === 0) {
 
-                let noInstructions = "Sorry, there are no instructions for this recipe."
+                let noInstructions = $("<h2>").text("Sorry, there are no instructions for this recipe.")
                 console.log(noInstructions)
 
                 // FIXME: Not sure why this is not working tried .text(), .html(), and .append()... 
@@ -231,15 +237,14 @@ $(document).ready(function () {
                 request.setRequestHeader("X-Mashape-Key", "Opn7fgzDzImshjKftqensUuVw0XIp1SkMBQjsnfyMPrMiQydkc");
             },
 
-            header: {
-                'Access-Control-Allow-Headers': '*'
-            },
+            // header: {
+            //     'Access-Control-Allow-Origin': '*'
+            // },
 
             dataType: "Json",
             method: "GET",
             url: winePairingURL
-            //FIXME: this is just for testing I am not really sure how to do an ajax call error yet
-            // error: alert("Dude Just go pick up 2 forties of Mad Dog 2020");
+
 
             // Once the promise is returned run the code below
         }).then(function (response) {
@@ -257,6 +262,9 @@ $(document).ready(function () {
             }
 
             function failureMessage() {
+
+                $("#wine-pairing").html("");
+
 
                 let randomFlavor = Math.floor(Math.random() * errorArray.flavors["length"]);
 
@@ -399,18 +407,23 @@ $(document).ready(function () {
             }
         });
 
-        // When you click on a movie (".movie-item")
-        $(document).on("click", ".movie-item", function () {
-            let movieId = $(this).attr("data-movie-id");
-            let movieReleaseDate = $(this).attr("data-movie-release-date");
-            console.log("Movie id: " + movieId);
-            console.log("Movie Release date: " + movieReleaseDate);
-            $(this).children(".movie-overview").toggle();
-            let movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + api_key;
-            console.log(movieUrl);
-            // FIXME: Do something more interesting
-        })
+      
     });
+
+      // When you click on a movie (".movie-item")
+      $(document).on("click", ".movie-item", function () {
+        console.log("clicked");
+        let movieId = $(this).attr("data-movie-id");
+        let movieReleaseDate = $(this).attr("data-movie-release-date");
+        console.log("Movie id: " + movieId);
+        console.log("Movie Release date: " + movieReleaseDate);
+        console.log($(this).children(".movie-overview"))
+        $(this).children(".movie-overview").toggle();
+        console.log("did toggle");
+        let movieUrl = "https://api.themoviedb.org/3/movie/" + movieId + "?api_key=" + api_key;
+        console.log(movieUrl);
+        // FIXME: Do something more interesting
+    })
 
 });
 
