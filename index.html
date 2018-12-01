@@ -26,13 +26,15 @@
 </head>
 
 <body id="kitchen">
-    <div class="container">
-        <div class="jumbotron" style="background-color: rgb(25, 60, 78) ; color: rgb(240, 237, 235)">
-            <h1 class="text-center">
-                <strong>Eat <i class="fas fa-utensils"> </i> Sip <i class="fas fa-wine-bottle"></i> and Chill <i class="fas fa-film"></i>
-                    . . . </strong>
-            </h1>
-        </div>
+    <div class="jumbo-transparent">
+
+    </div>
+    <div class="jumbotron" style="background-color: transparent; color: rgb(240, 237, 235)">
+        <h1 class="text-center">
+            <strong>Eat <i class="fas fa-utensils"> </i> Sip <i class="fas fa-wine-bottle"></i> and Chill <i class="fas fa-film"></i>
+                . . . </strong>
+        </h1>
+    </div>
     </div>
 
 
@@ -46,33 +48,39 @@
         </nav>
     </div>
 
-    <div class="container">
-        <div class="row">
-            <div class="text-center col-6">
-                <h3>Food Recipe</h3>
-                <h5><i class="fas fa-cookie-bite"></i> What's in the fridge?</h5>
-                <form id="recipe-request">
-                    <!-- <label for="ingredient-input"> What's in the fridge? <i class="fas fa-apple-alt"></i></label> -->
-                    <input type="text" id="ingredient-input">
-                    <br>
-                    <!-- Button submits recipe request -->
-                    <input id="find-recipes" type="submit" value="Find my recipes">
-                </form>
 
-                <div id="food">
-                    <div id="dinner-table"></div>
-                </div>                
-                    <div id="selectedRecipeTitle"></div>
-                    <div id="test1"></div>
-                    <div id="instructions"></div>
-                    <div id="button2"></div>
-                </div>
+    <div class="transparent-background">
 
-            <div class="text-center col-6"> 
-                <div id="wine-pairing"></div>
+    </div>
+
+    <div class="row">
+        <div class="text-center col-6 mt-3">
+            <h3>Food Recipe</h3>
+            <h5><i class="fas fa-cookie-bite"></i> What's in the fridge?</h5>
+            <form id="recipe-request">
+                <!-- <label for="ingredient-input"> What's in the fridge? <i class="fas fa-apple-alt"></i></label> -->
+                <input type="text" id="ingredient-input" placeholder="Main ingredient, second, third, etc.">
+                <br>
+                <!-- Button submits recipe request -->
+                <input id="find-recipes" type="submit" value="FIND MY RECIPES">
+            </form>
+
+            <div id="food">
+                <div id="dinner-table"></div>
             </div>
-        
-<!--     
+            <div id="selectedRecipeTitle"></div>
+            <div id="test1"></div>
+            <div id="instructions"></div>
+            <div id="button2"></div>
+        </div>
+
+        <div class="text-center col-6 mt-3">
+            <h3>Wine Pairing</h3>
+
+            <div id="wine-pairing"></div>
+        </div>
+
+        <!--     
             <div id="movies" class="text-center col-4">
                 <h3>Suggested Movies</h3>
                 <form>
@@ -88,8 +96,8 @@
                 </form>
                 <div id="movieTable"></div>
             </div> -->
-        </div>
     </div>
+
 
     <script src="assets/javascript/script.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.3/umd/popper.min.js" integrity="sha384-ZMP7rVo3mIykV+2+9J3UJ46jBk0WLaUAdn689aCwoqbBJiSnjAK/l8WvCWPIPm49"

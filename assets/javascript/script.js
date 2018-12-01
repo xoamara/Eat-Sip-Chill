@@ -118,11 +118,11 @@ $(document).ready(function () {
 
         // variable set up to access data from firebase
         let newWhatsInTheFridge = childSnapshot.val().whatsInTheFridge;
-        console.log(newWhatsInTheFridge);
+        // console.log(newWhatsInTheFridge);
 
         // variable to reference firebase key (id) for each data entry
         let key = childSnapshot.key
-        console.log(key);
+        // console.log(key);
     });
 
 
@@ -162,17 +162,24 @@ $(document).ready(function () {
 
             // variable holding the ajax data object for the cooking instructions
             let results = response;
-            console.log(results);
+            console.log(results.instructions);
+
+            let noInstructions = results.instructions;
 
             // Adding a conditional statement to let the user know if the recipe they selected lacks instructions the user is notified
             if (results.instructions == null || results.instructions.length === 0) {
 
-                let noInstructions = $("<h2>").text("Sorry, there are no instructions for this recipe.")
+                let noInstructionsDisplay = $("<p>").text("Sorry, there are no instructions for this recipe.")
+                noInstructionsDisplay.addClass("text-danger");
                 console.log(noInstructions)
 
                 // FIXME: Not sure why this is not working tried .text(), .html(), and .append()... 
-                $("#instructions").append(noInstructions);
-            };
+                $("#instructions").append(noInstructionsDisplay);
+
+            // hide the <div> with id = "food"
+            $("#food").hide();
+
+            } else {
 
             // hide the <div> with id = "food"
             $("#food").hide();
@@ -182,9 +189,10 @@ $(document).ready(function () {
 
             // appending the recipeInstructions <div> to the <div> with id = "instrucitons"
             $("#instructions").html(recipeInstructions);
-
+            }
+            
             // use JQuery to display recipe title above recipeInstructions
-            let selectedRecipeTitle = $("<strong>").html(results.title);
+            let selectedRecipeTitle = $("<h4>").html(results.title);
             console.log(selectedRecipeTitle);
             $("#selectedRecipeTitle").html(selectedRecipeTitle);
 
@@ -211,7 +219,7 @@ $(document).ready(function () {
             for (var k = 0; k < ingredientArray.length; k++) {
                 console.log(ingredientArray);
 
-                test1.innerHTML += "<p>" + ingredientArray[k] + "</p><br>";
+                test1.innerHTML += "<p>" + ingredientArray[k] + "</p>";
             }
         });
 
@@ -271,12 +279,12 @@ $(document).ready(function () {
                 //TODO: Under construction...will push title/flavor/image to wine pairing div upon failure, if I can get it working here it will also go in the else if statement.  Then work refactoring to reduce repeate elements (Neri)//
                 let errorImage = $("<img>");
                 errorImage.attr({
-                    class: "img-fluid img-thumbnail rounded",
+                    class: "img-fluid img-thumbnail rounded shadow",
                     src: "assets/images/error-images/image" + randomFlavor + ".jpg",
                 })
 
-                let errorDescription = $("<p>").html(errorArray.title);
-                let errorFlavor = $("<p>").html(errorArray.flavors[randomFlavor]);
+                let errorDescription = $("<h4>").html(errorArray.title);
+                let errorFlavor = $("<h4>").html(errorArray.flavors[randomFlavor]);
 
                 $("#wine-pairing").append(errorDescription);
                 $("#wine-pairing").append(errorImage);
@@ -311,7 +319,7 @@ $(document).ready(function () {
         });
 
         // dynamically creating a back button so that the user can get back to the recipes once they are reading instructions
-        let backButton = $("<button>").attr("id", "back-button").addClass("button").text("BACK-BUTTON");
+        let backButton = $("<button>").attr("id", "back-button").addClass("button").text("BACK TO RECIPES");
 
         // appending the recipeInstructions <div> to the <div> with id = "instrucitons"
         $("#button2").html(backButton);
@@ -322,8 +330,6 @@ $(document).ready(function () {
             // prevent the page from refreshing
             event.preventDefault();
 
-            console.log("button click")
-
             // Hide the back-button
             $("#back-button").hide();
 
@@ -332,6 +338,10 @@ $(document).ready(function () {
 
             // Erasing the text inside the instructions div
             $("#instructions").text("");
+
+            $("#test1").text("");
+
+            $("#selectedRecipeTitle").text("");
 
             // show the div with id = "food" 
             $("#food").show();
